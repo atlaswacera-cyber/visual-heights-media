@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Visual Heights Media | Stories with Altitude",
+  title: "Kinetic | Private Image Motion Studio",
   description:
-    "A Chicago media production studio creating film, photography, and visual direction with clarity, character, and vintage soul.",
+    "A private local-first workspace for shaping still images into motion.",
   icons: {
     icon: "/vhm-mark.png",
     shortcut: "/vhm-mark.png",
