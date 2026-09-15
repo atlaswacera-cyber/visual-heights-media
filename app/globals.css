@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #0a0a09;
-  --ink-soft: #171713;
-  --cream: #eee9dd;
-  --paper: #f5f2e9;
-  --gold: #c3a166;
-  --gold-bright: #d8b773;
-  --sage: #97a184;
-  --line-dark: rgba(10, 10, 9, 0.2);
-  --line-light: rgba(238, 233, 221, 0.2);
+  --ink: #070604;
+  --ink-soft: #110d08;
+  --cream: #f4e5c7;
+  --paper: #100b06;
+  --gold: #ad741e;
+  --gold-bright: #f2bd55;
+  --sage: #5f4325;
+  --line-dark: rgba(242, 189, 85, 0.22);
+  --line-light: rgba(244, 229, 199, 0.18);
 }
 
 * {
@@ -23,8 +23,8 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--ink);
+  color: var(--cream);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -184,8 +184,10 @@ button {
   gap: clamp(36px, 5vw, 100px);
   overflow: hidden;
   background:
-    radial-gradient(circle at 72% 35%, rgba(195, 161, 102, 0.12), transparent 29%),
-    var(--ink);
+    radial-gradient(ellipse at 66% 82%, rgba(255, 166, 35, 0.34), transparent 15%),
+    radial-gradient(ellipse at 70% 42%, rgba(166, 85, 12, 0.24), transparent 35%),
+    radial-gradient(ellipse at 5% 70%, rgba(115, 48, 7, 0.15), transparent 28%),
+    linear-gradient(120deg, #030302 0%, #110a05 55%, #030302 100%);
   color: var(--cream);
 }
 
@@ -194,7 +196,9 @@ button {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(90deg, transparent 49.93%, rgba(238, 233, 221, 0.06) 50%, transparent 50.07%);
+  background:
+    linear-gradient(90deg, transparent 49.93%, rgba(242, 189, 85, 0.12) 50%, transparent 50.07%),
+    linear-gradient(0deg, transparent 8%, rgba(242, 189, 85, 0.28) 8.1%, transparent 8.25%);
 }
 
 .hero__grain,
@@ -345,7 +349,7 @@ button {
   width: 100%;
   aspect-ratio: 0.718;
   overflow: hidden;
-  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.72), 0 14px 45px rgba(225, 146, 28, 0.18);
   animation: heroFloat 7s ease-in-out infinite;
 }
 
@@ -353,8 +357,8 @@ button {
   content: "";
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(238, 233, 221, 0.15);
-  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(242, 189, 85, 0.38);
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.45), inset 0 -12px 50px rgba(212, 133, 22, 0.1);
 }
 
 .hero-mark-crop img {
@@ -425,7 +429,22 @@ button {
 }
 
 .manifesto {
-  background: var(--paper);
+  position: relative;
+  background:
+    radial-gradient(ellipse at 82% 10%, rgba(180, 105, 18, 0.18), transparent 29%),
+    linear-gradient(140deg, #140d07, #080604 76%);
+}
+
+.manifesto::after,
+.work::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(242, 189, 85, 0.18) 0.5px, transparent 0.7px);
+  background-size: 9px 9px;
+  opacity: 0.16;
+  mix-blend-mode: screen;
 }
 
 .manifesto__grid {
@@ -452,7 +471,7 @@ button {
 
 .manifesto__copy p:last-child {
   margin-bottom: 0;
-  color: rgba(10, 10, 9, 0.56);
+  color: rgba(244, 229, 199, 0.64);
 }
 
 .manifesto__ticker {
@@ -476,7 +495,9 @@ button {
 
 .section--dark {
   color: var(--cream);
-  background: var(--ink);
+  background:
+    radial-gradient(ellipse at 8% 0%, rgba(177, 98, 15, 0.18), transparent 30%),
+    var(--ink);
 }
 
 .section--dark .section__topline {
@@ -531,7 +552,7 @@ button {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: var(--gold-bright);
+  background: linear-gradient(100deg, #8c4e0e, var(--gold-bright), #9e5a0e);
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform 350ms cubic-bezier(.22,.7,.2,1);
@@ -543,7 +564,7 @@ button {
 }
 
 .service:hover {
-  color: var(--ink);
+  color: #120a04;
 }
 
 .service:hover::before {
@@ -572,7 +593,7 @@ button {
 .service__title em {
   display: block;
   margin-top: 13px;
-  color: var(--sage);
+  color: #d29236;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 17px;
 }
@@ -606,7 +627,10 @@ button {
 }
 
 .work {
-  background: var(--cream);
+  position: relative;
+  background:
+    radial-gradient(ellipse at 12% 88%, rgba(188, 110, 20, 0.16), transparent 32%),
+    #0d0805;
 }
 
 .work-feature {
@@ -688,14 +712,14 @@ button {
 
 .work-card--amber {
   background:
-    linear-gradient(125deg, transparent 0 43%, rgba(10,10,9,.82) 43.2% 52%, transparent 52.2%),
-    radial-gradient(circle at 60% 45%, #d9b56b, #7b4a27 46%, #17100d 72%);
+    linear-gradient(125deg, transparent 0 43%, rgba(3,3,2,.88) 43.2% 52%, transparent 52.2%),
+    radial-gradient(circle at 60% 45%, #f5bd50, #8b4812 46%, #120904 72%);
 }
 
 .work-card--sage {
   background:
-    linear-gradient(35deg, rgba(238,233,221,.75) 0 4%, transparent 4.2% 48%, rgba(10,10,9,.68) 48.2% 55%, transparent 55.2%),
-    radial-gradient(circle at 37% 40%, #c9ceb8, #798169 42%, #181a16 78%);
+    linear-gradient(35deg, rgba(244,229,199,.72) 0 4%, transparent 4.2% 48%, rgba(3,3,2,.78) 48.2% 55%, transparent 55.2%),
+    radial-gradient(circle at 37% 40%, #e5b75d, #704016 42%, #130a04 78%);
 }
 
 .work-card__ring {
@@ -755,7 +779,7 @@ button {
 }
 
 .work-item__caption span {
-  color: rgba(10, 10, 9, 0.55);
+  color: rgba(244, 229, 199, 0.56);
   font-size: 10px;
   text-align: right;
   text-transform: uppercase;
@@ -763,8 +787,10 @@ button {
 }
 
 .section--sage {
-  color: var(--ink);
-  background: var(--sage);
+  color: var(--cream);
+  background:
+    radial-gradient(ellipse at 54% 100%, rgba(243, 181, 72, 0.28), transparent 26%),
+    linear-gradient(135deg, #39220e, #100906 75%);
 }
 
 .contact {
@@ -784,7 +810,7 @@ button {
 }
 
 .contact h2 em {
-  color: var(--paper);
+  color: var(--gold-bright);
 }
 
 .contact__button {
@@ -797,7 +823,8 @@ button {
   justify-content: space-between;
   border-radius: 50%;
   color: var(--cream);
-  background: var(--ink);
+  border: 1px solid rgba(242, 189, 85, 0.45);
+  background: radial-gradient(circle at 35% 35%, #261306, var(--ink) 67%);
   font-size: 12px;
   transition:
     color 320ms ease,
