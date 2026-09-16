@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { About } from "./components/About";
+import { AmbientAudio } from "./components/AmbientAudio";
 import { Contact } from "./components/Contact";
 import { Hero } from "./components/Hero";
 import { Services } from "./components/Services";
@@ -43,6 +44,7 @@ export default function Home() {
         onCloseMenu={() => setMenuOpen(false)}
         onToggleMenu={() => setMenuOpen((open) => !open)}
       />
+      <AmbientAudio />
       <main>
         <Hero />
         <About />

@@ -1300,3 +1300,59 @@ button {
     transition-duration: 0.01ms !important;
   }
 }
+
+.ambient-audio-toggle {
+  position: fixed;
+  left: 22px;
+  bottom: 22px;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid rgba(232, 180, 80, 0.34);
+  border-radius: 999px;
+  background: rgba(12, 11, 9, 0.72);
+  color: rgba(244, 231, 204, 0.72);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition: border-color 180ms ease, color 180ms ease, background 180ms ease;
+}
+
+.ambient-audio-toggle > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(244, 231, 204, 0.4);
+  transition: background 180ms ease, box-shadow 180ms ease;
+}
+
+.ambient-audio-toggle--on {
+  border-color: rgba(232, 180, 80, 0.72);
+  color: var(--cream);
+}
+
+.ambient-audio-toggle--on > span {
+  background: var(--gold-bright);
+  box-shadow: 0 0 11px rgba(245, 188, 76, 0.9);
+}
+
+@media (hover: hover) {
+  .ambient-audio-toggle:hover {
+    border-color: var(--gold-bright);
+    color: var(--cream);
+    background: rgba(22, 17, 10, 0.9);
+  }
+}
+
+@media (max-width: 600px) {
+  .ambient-audio-toggle {
+    left: 15px;
+    bottom: 15px;
+  }
+}
