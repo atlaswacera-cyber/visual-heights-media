@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const START_AT = 9;
+const START_AT = 16;
 const LISTENING_VOLUME = 0.11;
 
 export function AmbientAudio() {
