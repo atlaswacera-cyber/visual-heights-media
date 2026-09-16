@@ -356,13 +356,32 @@ button {
   justify-self: end;
 }
 
-.hero-mark-crop {
+.hero-identity {
   position: relative;
   width: 100%;
   aspect-ratio: 0.718;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.hero-identity:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 7px;
+}
+
+.hero-mark-crop {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
   overflow: hidden;
   box-shadow: 0 32px 90px rgba(0, 0, 0, 0.72), 0 14px 45px rgba(225, 146, 28, 0.18);
   animation: heroFloat 7s ease-in-out infinite;
+  transition: opacity 650ms ease, transform 850ms cubic-bezier(.22,.7,.2,1);
 }
 
 .hero-mark-crop::after {
@@ -397,6 +416,81 @@ button {
   object-fit: contain;
   padding: clamp(16px, 3vw, 42px);
   filter: drop-shadow(0 0 24px rgba(242, 174, 48, 0.22));
+}
+
+.hero-artist-card {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.91) rotate(-2deg);
+  pointer-events: none;
+  transition: opacity 520ms ease 120ms, transform 850ms cubic-bezier(.22,.7,.2,1);
+}
+
+.hero-artist-card > img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 42%;
+  transform: scale(1.06);
+}
+
+.hero-artist-card__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5, 3, 1, 0.04) 25%, rgba(5, 3, 1, 0.9) 100%);
+}
+
+.hero-artist-card__copy {
+  position: absolute;
+  z-index: 1;
+  right: clamp(16px, 2vw, 30px);
+  bottom: clamp(17px, 2vw, 31px);
+  left: clamp(16px, 2vw, 30px);
+  display: grid;
+  gap: 9px;
+  color: var(--cream);
+  text-align: left;
+}
+
+.hero-artist-card__copy .eyebrow { color: var(--gold-bright); }
+
+.hero-artist-card__copy strong {
+  font-size: clamp(27px, 3vw, 46px);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+}
+
+.hero-artist-card__copy > span:not(.eyebrow) {
+  max-width: 355px;
+  color: rgba(244, 229, 199, 0.84);
+  font-size: clamp(13px, 1.1vw, 16px);
+  line-height: 1.45;
+}
+
+.hero-artist-card__copy em {
+  margin-top: 3px;
+  color: rgba(244, 229, 199, 0.62);
+  font-family: monospace;
+  font-size: 9px;
+  font-style: normal;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.hero__visual--artist .hero-mark-crop {
+  opacity: 0;
+  transform: scale(1.28) rotate(8deg);
+  animation: none;
+}
+
+.hero__visual--artist .hero-artist-card {
+  opacity: 1;
+  transform: scale(1) rotate(0);
+  pointer-events: auto;
 }
 
 .hero__visual-label {
