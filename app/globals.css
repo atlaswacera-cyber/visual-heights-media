@@ -102,6 +102,18 @@ button {
   letter-spacing: -0.08em;
 }
 
+.wordmark__monogram--image {
+  padding: 3px;
+  border-color: rgba(242, 189, 85, 0.68);
+}
+
+.wordmark__monogram--image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
 .wordmark__name {
   font-size: 12px;
   font-weight: 600;

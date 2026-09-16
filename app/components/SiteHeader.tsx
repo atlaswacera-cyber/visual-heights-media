@@ -9,7 +9,7 @@ export function SiteHeader({ menuOpen, scrolled, onCloseMenu, onToggleMenu }: Si
   return (
     <header className={`site-header${scrolled ? " site-header--scrolled" : ""}`}>
       <a className="wordmark" href="#top" aria-label="Visual Heights Media home">
-        <span className="wordmark__monogram">VH</span><span className="wordmark__name">Visual Heights</span>
+        <span className="wordmark__monogram wordmark__monogram--image" aria-hidden="true"><img src="/vhm-monogram-gold.png" alt="" /></span><span className="wordmark__name">Visual Heights</span>
       </a>
       <nav className={`nav-links${menuOpen ? " nav-links--open" : ""}`} aria-label="Primary navigation">
         <a href="#work" onClick={onCloseMenu}>Work</a><a href="#services" onClick={onCloseMenu}>Services</a>
