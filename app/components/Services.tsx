@@ -2,6 +2,7 @@ const services = [
   { number: "01", title: "Motion", subtitle: "Films with feeling.", description: "Brand films, commercials, social campaigns, and event stories shaped with a cinematic eye." },
   { number: "02", title: "Stills", subtitle: "Images that linger.", description: "Editorial, lifestyle, product, and portrait photography with warmth, texture, and intention." },
   { number: "03", title: "Direction", subtitle: "A world of your own.", description: "Creative concepts, visual identity, and production direction that make every frame feel connected." },
+  { number: "04", title: "Digital", subtitle: "Built to be experienced.", description: "Websites, launch pages, and early app experiences shaped with the same cinematic, brand-first point of view." },
 ];
 
 export function Services() {
