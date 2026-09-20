@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 const START_AT = 16;
 const LISTENING_VOLUME = 0.11;
+const LOOP_LEAD_TIME = 3.2;
 
 export function AmbientAudio() {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -65,20 +66,27 @@ export function AmbientAudio() {
     const restartGently = () => {
       if (restartingRef.current || pausedForVideoRef.current) return;
       restartingRef.current = true;
-      fadeTo(0, 1800, () => {
+      fadeTo(0, 1100, () => {
         audio.currentTime = START_AT;
-        audio.play().then(() => fadeTo(LISTENING_VOLUME, 1300)).catch(() => setEnabled(false));
-        restartingRef.current = false;
+        audio.play()
+          .then(() => {
+            fadeTo(LISTENING_VOLUME, 900);
+            restartingRef.current = false;
+          })
+          .catch(() => {
+            restartingRef.current = false;
+            setEnabled(false);
+          });
       });
     };
 
     const onTimeUpdate = () => {
-      if (Number.isFinite(audio.duration) && audio.currentTime > audio.duration - 2.1) restartGently();
+      if (Number.isFinite(audio.duration) && audio.currentTime > audio.duration - LOOP_LEAD_TIME) restartGently();
     };
     const onEnded = () => {
       restartingRef.current = false;
       audio.currentTime = START_AT;
-      begin();
+      audio.play().then(() => fadeTo(LISTENING_VOLUME, 900)).catch(() => setEnabled(false));
     };
     const unlockOnFirstInteraction = () => { begin(); };
 

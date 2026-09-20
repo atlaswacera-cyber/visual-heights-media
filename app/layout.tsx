@@ -6,8 +6,8 @@ export const metadata: Metadata = {
   description:
     "A Chicago media production studio creating film, photography, and visual direction with clarity, character, and vintage soul.",
   icons: {
-    icon: "/vhm-mark.png",
-    shortcut: "/vhm-mark.png",
+    icon: "/vhm-monogram-gold.png",
+    shortcut: "/vhm-monogram-gold.png",
   },
 };
 
