@@ -6,8 +6,10 @@ export function Hero() {
   const [artistOpen, setArtistOpen] = useState(false);
   const [artistExiting, setArtistExiting] = useState(false);
   const [artistEffectsReady, setArtistEffectsReady] = useState(false);
+  const [artistFlaresVisible, setArtistFlaresVisible] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
   const effectsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const flareFrameRef = useRef<number | null>(null);
 
   useEffect(() => {
     const artistPhoto = new Image();
@@ -17,12 +19,30 @@ export function Hero() {
 
   useEffect(() => () => {
     if (effectsTimerRef.current) clearTimeout(effectsTimerRef.current);
+    if (flareFrameRef.current) cancelAnimationFrame(flareFrameRef.current);
   }, []);
+
+  useEffect(() => {
+    if (!artistEffectsReady) {
+      setArtistFlaresVisible(false);
+      return;
+    }
+
+    // Two frames guarantee the invisible state paints before the opacity transition begins.
+    flareFrameRef.current = requestAnimationFrame(() => {
+      flareFrameRef.current = requestAnimationFrame(() => setArtistFlaresVisible(true));
+    });
+
+    return () => {
+      if (flareFrameRef.current) cancelAnimationFrame(flareFrameRef.current);
+    };
+  }, [artistEffectsReady]);
 
   const toggleArtist = () => {
     if (artistOpen) {
       if (effectsTimerRef.current) clearTimeout(effectsTimerRef.current);
       setArtistEffectsReady(false);
+      setArtistFlaresVisible(false);
       const watermarkTransform = heroRef.current
         ? window.getComputedStyle(heroRef.current, "::after").transform
         : "";
@@ -41,7 +61,7 @@ export function Hero() {
   };
 
   return (
-    <section ref={heroRef} className={`hero${artistOpen ? " hero--artist" : ""}${artistEffectsReady ? " hero--artist-effects" : ""}${artistExiting ? " hero--artist-exit" : ""}`} aria-labelledby="hero-title">
+    <section ref={heroRef} className={`hero${artistOpen ? " hero--artist" : ""}${artistEffectsReady ? " hero--artist-effects" : ""}${artistFlaresVisible ? " hero--artist-flares-visible" : ""}${artistExiting ? " hero--artist-exit" : ""}`} aria-labelledby="hero-title">
       <div className="hero__grain" aria-hidden="true" />
       <div className="hero__copy">
         <p className="eyebrow hero__eyebrow"><span>Independent media studio</span><span>Chicago · Everywhere</span></p>

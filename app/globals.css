@@ -546,7 +546,7 @@ button {
   filter: blur(1px);
   animation: artistLensDrift 11s ease-in-out infinite alternate;
   animation-play-state: paused;
-  transition: opacity 500ms ease;
+  transition: opacity 1800ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero-artist-card::after {
@@ -560,21 +560,23 @@ button {
   transform: rotate(21deg);
   animation: artistLightSweep 9s ease-in-out infinite alternate;
   animation-play-state: paused;
-  transition: opacity 500ms ease;
+  transition: opacity 2000ms cubic-bezier(0.16, 1, 0.3, 1) 100ms;
 }
 
 .hero--artist-effects .hero-artist-card::before {
-  opacity: 0.46;
-  animation:
-    artistLensDrift 11s ease-in-out infinite alternate,
-    artistPhotoFlareIn 1500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-play-state: running;
 }
 
 .hero--artist-effects .hero-artist-card::after {
+  animation-play-state: running;
+}
+
+.hero--artist-flares-visible .hero-artist-card::before {
+  opacity: 0.46;
+}
+
+.hero--artist-flares-visible .hero-artist-card::after {
   opacity: 0.26;
-  animation:
-    artistLightSweep 9s ease-in-out infinite alternate,
-    artistPhotoLightIn 1800ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .hero-artist-card > img {
@@ -600,16 +602,6 @@ button {
     rgba(5, 3, 1, 0.04) 25%,
     rgba(5, 3, 1, 0.9) 100%
   );
-}
-
-@keyframes artistPhotoFlareIn {
-  from { opacity: 0; }
-  to { opacity: 0.46; }
-}
-
-@keyframes artistPhotoLightIn {
-  from { opacity: 0; }
-  to { opacity: 0.26; }
 }
 
 .hero-artist-card__copy {
