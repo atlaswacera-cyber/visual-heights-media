@@ -1,11 +1,17 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function Hero() {
   const [artistOpen, setArtistOpen] = useState(false);
   const [artistExiting, setArtistExiting] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const artistPhoto = new Image();
+    artistPhoto.src = "/atlas-wacera.jpg";
+    void artistPhoto.decode().catch(() => undefined);
+  }, []);
 
   const toggleArtist = () => {
     if (artistOpen) {
@@ -45,7 +51,7 @@ export function Hero() {
         >
           <span className="hero-mark-crop" aria-hidden="true"><img src="/vhm-monogram-gold.png" alt="" /></span>
           <span className="hero-artist-card">
-            <img src="/atlas-wacera.jpg" alt="Atlas Wacera standing in front of a brick archway" />
+            <img src="/atlas-wacera.jpg" alt="Atlas Wacera standing in front of a brick archway" fetchPriority="high" decoding="sync" />
             <span className="hero-artist-card__shade" aria-hidden="true" />
             <span className="hero-artist-card__copy">
               <span className="eyebrow">Meet the artist</span>
