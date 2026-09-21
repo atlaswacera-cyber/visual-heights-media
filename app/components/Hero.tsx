@@ -5,7 +5,9 @@ import { useEffect, useRef, useState } from "react";
 export function Hero() {
   const [artistOpen, setArtistOpen] = useState(false);
   const [artistExiting, setArtistExiting] = useState(false);
+  const [artistEffectsReady, setArtistEffectsReady] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
+  const effectsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const artistPhoto = new Image();
@@ -13,8 +15,14 @@ export function Hero() {
     void artistPhoto.decode().catch(() => undefined);
   }, []);
 
+  useEffect(() => () => {
+    if (effectsTimerRef.current) clearTimeout(effectsTimerRef.current);
+  }, []);
+
   const toggleArtist = () => {
     if (artistOpen) {
+      if (effectsTimerRef.current) clearTimeout(effectsTimerRef.current);
+      setArtistEffectsReady(false);
       const watermarkTransform = heroRef.current
         ? window.getComputedStyle(heroRef.current, "::after").transform
         : "";
@@ -29,10 +37,11 @@ export function Hero() {
 
     setArtistExiting(false);
     setArtistOpen(true);
+    effectsTimerRef.current = setTimeout(() => setArtistEffectsReady(true), 650);
   };
 
   return (
-    <section ref={heroRef} className={`hero${artistOpen ? " hero--artist" : ""}${artistExiting ? " hero--artist-exit" : ""}`} aria-labelledby="hero-title">
+    <section ref={heroRef} className={`hero${artistOpen ? " hero--artist" : ""}${artistEffectsReady ? " hero--artist-effects" : ""}${artistExiting ? " hero--artist-exit" : ""}`} aria-labelledby="hero-title">
       <div className="hero__grain" aria-hidden="true" />
       <div className="hero__copy">
         <p className="eyebrow hero__eyebrow"><span>Independent media studio</span><span>Chicago · Everywhere</span></p>

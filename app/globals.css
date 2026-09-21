@@ -252,7 +252,7 @@ button {
     transform 1200ms cubic-bezier(0.22, 0.7, 0.2, 1);
 }
 
-.hero--artist::after {
+.hero--artist-effects::after {
   animation: artistWatermarkPass 120s linear infinite;
   will-change: opacity, transform;
 }
@@ -539,12 +539,14 @@ button {
 
 .hero-artist-card::before {
   inset: -25%;
-  opacity: 0.46;
+  opacity: 0;
   background:
     radial-gradient(ellipse 19% 12% at 72% 21%, rgba(255, 242, 202, 0.95), rgba(246, 183, 62, 0.34) 26%, transparent 72%),
     radial-gradient(ellipse 31% 20% at 69% 24%, rgba(244, 157, 35, 0.16), transparent 72%);
   filter: blur(1px);
   animation: artistLensDrift 11s ease-in-out infinite alternate;
+  animation-play-state: paused;
+  transition: opacity 500ms ease;
 }
 
 .hero-artist-card::after {
@@ -552,11 +554,23 @@ button {
   left: 48%;
   width: 18%;
   height: 142%;
-  opacity: 0.26;
+  opacity: 0;
   background: linear-gradient(90deg, transparent, rgba(255, 229, 159, 0.88), rgba(230, 139, 24, 0.22), transparent);
   filter: blur(8px);
   transform: rotate(21deg);
   animation: artistLightSweep 9s ease-in-out infinite alternate;
+  animation-play-state: paused;
+  transition: opacity 500ms ease;
+}
+
+.hero--artist-effects .hero-artist-card::before {
+  opacity: 0.46;
+  animation-play-state: running;
+}
+
+.hero--artist-effects .hero-artist-card::after {
+  opacity: 0.26;
+  animation-play-state: running;
 }
 
 .hero-artist-card > img {
