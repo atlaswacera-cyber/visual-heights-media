@@ -253,7 +253,7 @@ button {
 }
 
 .hero--artist::after {
-  animation: artistWatermarkPass 65s linear infinite;
+  animation: artistWatermarkPass 120s linear infinite;
   will-change: opacity, transform;
 }
 
@@ -1191,15 +1191,24 @@ button {
     opacity: 0;
     transform: translateX(54%) scale(1) rotate(-2deg);
   }
-  8% {
+  7% {
     opacity: 0.12;
   }
-  88% {
+  68% {
     opacity: 0.12;
+    transform: translateX(0) scale(1) rotate(-2deg);
+  }
+  76% {
+    opacity: 0.12;
+    transform: translateX(0) scale(1) rotate(-2deg);
+  }
+  96% {
+    opacity: 0;
+    transform: translateX(0) scale(1) rotate(-2deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(-154%) scale(1) rotate(-2deg);
+    transform: translateX(54%) scale(1) rotate(-2deg);
   }
 }
 
