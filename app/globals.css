@@ -238,20 +238,24 @@ button {
   inset: 0;
   pointer-events: none;
   opacity: 0;
-  background-image: url("/vhm-monogram-gold.png");
+  background-image:
+    url("/vhm-monogram-gold.png"),
+    radial-gradient(ellipse 22% 18% at 71% 37%, rgba(255, 231, 170, 0.62), rgba(244, 157, 30, 0.13) 36%, transparent 72%),
+    radial-gradient(ellipse 28% 22% at 31% 72%, rgba(229, 139, 24, 0.16), transparent 72%);
   background-repeat: no-repeat;
-  background-position: 74% 51%;
-  background-size: clamp(420px, 44vw, 760px);
-  filter: saturate(0.78) blur(0.4px);
-  transform: scale(0.92) rotate(-5deg);
+  background-position: center 53%, 71% 37%, 31% 72%;
+  background-size: clamp(780px, 86vw, 1520px) auto, 48% 46%, 42% 40%;
+  filter: saturate(0.82) blur(0.35px) drop-shadow(0 0 38px rgba(239, 168, 47, 0.24));
+  transform: scale(0.93) rotate(-4deg);
   transition:
     opacity 900ms ease 100ms,
     transform 1200ms cubic-bezier(0.22, 0.7, 0.2, 1);
 }
 
 .hero--artist::after {
-  opacity: 0.075;
+  opacity: 0.12;
   transform: scale(1) rotate(-2deg);
+  animation: artistWatermarkSway 10s ease-in-out infinite alternate;
 }
 
 .hero__grain,
@@ -1180,6 +1184,18 @@ button {
   }
   50% {
     transform: translateY(-10px) rotate(0.4deg);
+  }
+}
+
+@keyframes artistWatermarkSway {
+  0% {
+    transform: translate(-1.2%, 1%) scale(0.99) rotate(-2.6deg);
+  }
+  52% {
+    transform: translate(1%, -1.4%) scale(1.025) rotate(-1deg);
+  }
+  100% {
+    transform: translate(-0.6%, 0.5%) scale(1) rotate(-2deg);
   }
 }
 
