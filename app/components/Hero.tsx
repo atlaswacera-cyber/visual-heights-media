@@ -1,13 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export function Hero() {
   const [artistOpen, setArtistOpen] = useState(false);
   const [artistExiting, setArtistExiting] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
 
   const toggleArtist = () => {
     if (artistOpen) {
+      const watermarkTransform = heroRef.current
+        ? window.getComputedStyle(heroRef.current, "::after").transform
+        : "";
+      if (watermarkTransform && watermarkTransform !== "none") {
+        heroRef.current?.style.setProperty("--artist-watermark-exit-transform", watermarkTransform);
+      }
       setArtistOpen(false);
       setArtistExiting(true);
       window.setTimeout(() => setArtistExiting(false), 1100);
@@ -19,7 +26,7 @@ export function Hero() {
   };
 
   return (
-    <section className={`hero${artistOpen ? " hero--artist" : ""}${artistExiting ? " hero--artist-exit" : ""}`} aria-labelledby="hero-title">
+    <section ref={heroRef} className={`hero${artistOpen ? " hero--artist" : ""}${artistExiting ? " hero--artist-exit" : ""}`} aria-labelledby="hero-title">
       <div className="hero__grain" aria-hidden="true" />
       <div className="hero__copy">
         <p className="eyebrow hero__eyebrow"><span>Independent media studio</span><span>Chicago · Everywhere</span></p>
