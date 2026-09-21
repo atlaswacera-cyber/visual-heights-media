@@ -253,9 +253,8 @@ button {
 }
 
 .hero--artist::after {
-  opacity: 0.12;
-  transform: scale(1) rotate(-2deg);
-  animation: artistWatermarkSway 10s ease-in-out infinite alternate;
+  animation: artistWatermarkPass 28s linear infinite;
+  will-change: opacity, transform;
 }
 
 .hero__grain,
@@ -1187,15 +1186,20 @@ button {
   }
 }
 
-@keyframes artistWatermarkSway {
+@keyframes artistWatermarkPass {
   0% {
-    transform: translate(-1.2%, 1%) scale(0.99) rotate(-2.6deg);
+    opacity: 0;
+    transform: translateX(54%) scale(1) rotate(-2deg);
   }
-  52% {
-    transform: translate(1%, -1.4%) scale(1.025) rotate(-1deg);
+  8% {
+    opacity: 0.12;
+  }
+  88% {
+    opacity: 0.12;
   }
   100% {
-    transform: translate(-0.6%, 0.5%) scale(1) rotate(-2deg);
+    opacity: 0;
+    transform: translateX(-154%) scale(1) rotate(-2deg);
   }
 }
 
