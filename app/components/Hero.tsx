@@ -6,7 +6,7 @@ export function Hero() {
   const [artistOpen, setArtistOpen] = useState(false);
 
   return (
-    <section className="hero" aria-labelledby="hero-title">
+    <section className={`hero${artistOpen ? " hero--artist" : ""}`} aria-labelledby="hero-title">
       <div className="hero__grain" aria-hidden="true" />
       <div className="hero__copy">
         <p className="eyebrow hero__eyebrow"><span>Independent media studio</span><span>Chicago · Everywhere</span></p>
