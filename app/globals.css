@@ -253,7 +253,7 @@ button {
 }
 
 .hero--artist::after {
-  animation: artistWatermarkPass 28s linear infinite;
+  animation: artistWatermarkPass 65s linear infinite;
   will-change: opacity, transform;
 }
 
