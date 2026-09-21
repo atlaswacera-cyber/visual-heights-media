@@ -4,9 +4,22 @@ import { useState } from "react";
 
 export function Hero() {
   const [artistOpen, setArtistOpen] = useState(false);
+  const [artistExiting, setArtistExiting] = useState(false);
+
+  const toggleArtist = () => {
+    if (artistOpen) {
+      setArtistOpen(false);
+      setArtistExiting(true);
+      window.setTimeout(() => setArtistExiting(false), 1100);
+      return;
+    }
+
+    setArtistExiting(false);
+    setArtistOpen(true);
+  };
 
   return (
-    <section className={`hero${artistOpen ? " hero--artist" : ""}`} aria-labelledby="hero-title">
+    <section className={`hero${artistOpen ? " hero--artist" : ""}${artistExiting ? " hero--artist-exit" : ""}`} aria-labelledby="hero-title">
       <div className="hero__grain" aria-hidden="true" />
       <div className="hero__copy">
         <p className="eyebrow hero__eyebrow"><span>Independent media studio</span><span>Chicago · Everywhere</span></p>
@@ -21,7 +34,7 @@ export function Hero() {
           type="button"
           aria-label={artistOpen ? "Return to the Visual Heights logo" : "Meet the artist, Atlas Wacera"}
           aria-pressed={artistOpen}
-          onClick={() => setArtistOpen((open) => !open)}
+          onClick={toggleArtist}
         >
           <span className="hero-mark-crop" aria-hidden="true"><img src="/vhm-monogram-gold.png" alt="" /></span>
           <span className="hero-artist-card">
