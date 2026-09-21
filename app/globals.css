@@ -196,8 +196,16 @@ button {
   gap: clamp(36px, 5vw, 100px);
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 66% 82%, rgba(255, 166, 35, 0.34), transparent 15%),
-    radial-gradient(ellipse at 70% 42%, rgba(166, 85, 12, 0.24), transparent 35%),
+    radial-gradient(
+      ellipse at 66% 82%,
+      rgba(255, 166, 35, 0.34),
+      transparent 15%
+    ),
+    radial-gradient(
+      ellipse at 70% 42%,
+      rgba(166, 85, 12, 0.24),
+      transparent 35%
+    ),
     radial-gradient(ellipse at 5% 70%, rgba(115, 48, 7, 0.15), transparent 28%),
     linear-gradient(120deg, #030302 0%, #110a05 55%, #030302 100%);
   color: var(--cream);
@@ -209,8 +217,18 @@ button {
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, transparent 49.93%, rgba(242, 189, 85, 0.12) 50%, transparent 50.07%),
-    linear-gradient(0deg, transparent 8%, rgba(242, 189, 85, 0.28) 8.1%, transparent 8.25%);
+    linear-gradient(
+      90deg,
+      transparent 49.93%,
+      rgba(242, 189, 85, 0.12) 50%,
+      transparent 50.07%
+    ),
+    linear-gradient(
+      0deg,
+      transparent 8%,
+      rgba(242, 189, 85, 0.28) 8.1%,
+      transparent 8.25%
+    );
 }
 
 .hero__grain,
@@ -224,10 +242,14 @@ button {
   z-index: 0;
   opacity: 0.18;
   background-image:
-    radial-gradient(rgba(255,255,255,0.35) 0.5px, transparent 0.6px),
-    radial-gradient(rgba(255,255,255,0.2) 0.5px, transparent 0.6px);
-  background-position: 0 0, 7px 9px;
-  background-size: 11px 11px, 13px 13px;
+    radial-gradient(rgba(255, 255, 255, 0.35) 0.5px, transparent 0.6px),
+    radial-gradient(rgba(255, 255, 255, 0.2) 0.5px, transparent 0.6px);
+  background-position:
+    0 0,
+    7px 9px;
+  background-size:
+    11px 11px,
+    13px 13px;
   mix-blend-mode: soft-light;
 }
 
@@ -353,7 +375,7 @@ button {
 
 .hero__visual {
   width: min(36vw, 510px);
-  justify-self: end;
+  justify-self: center;
 }
 
 .hero-identity {
@@ -380,7 +402,10 @@ button {
 
   .hero-identity:hover .hero-mark-crop::after {
     border-color: rgba(255, 210, 111, 0.94);
-    box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.36), inset 0 -12px 50px rgba(212, 133, 22, 0.18), 0 0 30px rgba(242, 174, 48, 0.16);
+    box-shadow:
+      inset 0 0 80px rgba(0, 0, 0, 0.36),
+      inset 0 -12px 50px rgba(212, 133, 22, 0.18),
+      0 0 30px rgba(242, 174, 48, 0.16);
   }
 
   .hero-identity:hover + .hero__visual-label {
@@ -398,9 +423,13 @@ button {
   height: 100%;
   display: block;
   overflow: hidden;
-  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.72), 0 14px 45px rgba(225, 146, 28, 0.18);
+  box-shadow:
+    0 32px 90px rgba(0, 0, 0, 0.72),
+    0 14px 45px rgba(225, 146, 28, 0.18);
   animation: heroFloat 7s ease-in-out infinite;
-  transition: opacity 650ms ease, transform 850ms cubic-bezier(.22,.7,.2,1);
+  transition:
+    opacity 650ms ease,
+    transform 850ms cubic-bezier(0.22, 0.7, 0.2, 1);
 }
 
 .hero-mark-crop::after {
@@ -409,8 +438,12 @@ button {
   z-index: 3;
   inset: 0;
   border: 1px solid rgba(242, 189, 85, 0.38);
-  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.45), inset 0 -12px 50px rgba(212, 133, 22, 0.1);
-  transition: border-color 300ms ease, box-shadow 300ms ease;
+  box-shadow:
+    inset 0 0 80px rgba(0, 0, 0, 0.45),
+    inset 0 -12px 50px rgba(212, 133, 22, 0.1);
+  transition:
+    border-color 300ms ease,
+    box-shadow 300ms ease;
 }
 
 .hero-mark-crop::before {
@@ -422,8 +455,18 @@ button {
   opacity: 0.42;
   mix-blend-mode: screen;
   background:
-    radial-gradient(ellipse 5% 34% at 27% 46%, rgba(255, 237, 180, 0.86), rgba(242, 174, 48, 0.18) 34%, transparent 72%),
-    radial-gradient(ellipse 4% 27% at 74% 62%, rgba(255, 224, 138, 0.72), rgba(232, 145, 32, 0.14) 35%, transparent 74%);
+    radial-gradient(
+      ellipse 5% 34% at 27% 46%,
+      rgba(255, 237, 180, 0.86),
+      rgba(242, 174, 48, 0.18) 34%,
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 4% 27% at 74% 62%,
+      rgba(255, 224, 138, 0.72),
+      rgba(232, 145, 32, 0.14) 35%,
+      transparent 74%
+    );
   animation: metalFlare 10s ease-in-out infinite alternate;
 }
 
@@ -436,7 +479,7 @@ button {
   object-fit: contain;
   padding: clamp(16px, 3vw, 42px);
   filter: drop-shadow(0 0 24px rgba(242, 174, 48, 0.22));
-  transition: transform 450ms cubic-bezier(.22,.7,.2,1);
+  transition: transform 450ms cubic-bezier(0.22, 0.7, 0.2, 1);
 }
 
 .hero-artist-card {
@@ -446,7 +489,9 @@ button {
   opacity: 0;
   transform: scale(0.91) rotate(-2deg);
   pointer-events: none;
-  transition: opacity 520ms ease 120ms, transform 850ms cubic-bezier(.22,.7,.2,1);
+  transition:
+    opacity 520ms ease 120ms,
+    transform 850ms cubic-bezier(0.22, 0.7, 0.2, 1);
 }
 
 .hero-artist-card > img {
@@ -456,13 +501,17 @@ button {
   object-fit: cover;
   object-position: center 42%;
   transform: scale(1.06);
-  transition: transform 650ms cubic-bezier(.22,.7,.2,1);
+  transition: transform 650ms cubic-bezier(0.22, 0.7, 0.2, 1);
 }
 
 .hero-artist-card__shade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(5, 3, 1, 0.04) 25%, rgba(5, 3, 1, 0.9) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(5, 3, 1, 0.04) 25%,
+    rgba(5, 3, 1, 0.9) 100%
+  );
 }
 
 .hero-artist-card__copy {
@@ -477,7 +526,9 @@ button {
   text-align: left;
 }
 
-.hero-artist-card__copy .eyebrow { color: var(--gold-bright); }
+.hero-artist-card__copy .eyebrow {
+  color: var(--gold-bright);
+}
 
 .hero-artist-card__copy strong {
   font-size: clamp(27px, 3vw, 46px);
@@ -522,7 +573,7 @@ button {
   font-family: monospace;
   font-size: 9px;
   letter-spacing: 0.16em;
-  text-align: right;
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -577,7 +628,11 @@ button {
 .manifesto {
   position: relative;
   background:
-    radial-gradient(ellipse at 82% 10%, rgba(180, 105, 18, 0.18), transparent 29%),
+    radial-gradient(
+      ellipse at 82% 10%,
+      rgba(180, 105, 18, 0.18),
+      transparent 29%
+    ),
     linear-gradient(140deg, #140d07, #080604 76%);
 }
 
@@ -587,7 +642,10 @@ button {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: radial-gradient(rgba(242, 189, 85, 0.18) 0.5px, transparent 0.7px);
+  background-image: radial-gradient(
+    rgba(242, 189, 85, 0.18) 0.5px,
+    transparent 0.7px
+  );
   background-size: 9px 9px;
   opacity: 0.16;
   mix-blend-mode: screen;
@@ -701,7 +759,7 @@ button {
   background: linear-gradient(100deg, #8c4e0e, var(--gold-bright), #9e5a0e);
   transform: scaleY(0);
   transform-origin: bottom;
-  transition: transform 350ms cubic-bezier(.22,.7,.2,1);
+  transition: transform 350ms cubic-bezier(0.22, 0.7, 0.2, 1);
 }
 
 .service > * {
@@ -775,7 +833,11 @@ button {
 .work {
   position: relative;
   background:
-    radial-gradient(ellipse at 12% 88%, rgba(188, 110, 20, 0.16), transparent 32%),
+    radial-gradient(
+      ellipse at 12% 88%,
+      rgba(188, 110, 20, 0.16),
+      transparent 32%
+    ),
     #0d0805;
 }
 
@@ -792,7 +854,7 @@ button {
   height: 100%;
   display: block;
   object-fit: cover;
-  transition: transform 1s cubic-bezier(.22,.7,.2,1);
+  transition: transform 1s cubic-bezier(0.22, 0.7, 0.2, 1);
 }
 
 .work-feature:hover img {
@@ -849,7 +911,7 @@ button {
   position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  transition: transform 500ms cubic-bezier(.22,.7,.2,1);
+  transition: transform 500ms cubic-bezier(0.22, 0.7, 0.2, 1);
 }
 
 .work-item:hover .work-card {
@@ -858,13 +920,24 @@ button {
 
 .work-card--amber {
   background:
-    linear-gradient(125deg, transparent 0 43%, rgba(3,3,2,.88) 43.2% 52%, transparent 52.2%),
+    linear-gradient(
+      125deg,
+      transparent 0 43%,
+      rgba(3, 3, 2, 0.88) 43.2% 52%,
+      transparent 52.2%
+    ),
     radial-gradient(circle at 60% 45%, #f5bd50, #8b4812 46%, #120904 72%);
 }
 
 .work-card--sage {
   background:
-    linear-gradient(35deg, rgba(244,229,199,.72) 0 4%, transparent 4.2% 48%, rgba(3,3,2,.78) 48.2% 55%, transparent 55.2%),
+    linear-gradient(
+      35deg,
+      rgba(244, 229, 199, 0.72) 0 4%,
+      transparent 4.2% 48%,
+      rgba(3, 3, 2, 0.78) 48.2% 55%,
+      transparent 55.2%
+    ),
     radial-gradient(circle at 37% 40%, #e5b75d, #704016 42%, #130a04 78%);
 }
 
@@ -935,7 +1008,11 @@ button {
 .section--sage {
   color: var(--cream);
   background:
-    radial-gradient(ellipse at 54% 100%, rgba(243, 181, 72, 0.28), transparent 26%),
+    radial-gradient(
+      ellipse at 54% 100%,
+      rgba(243, 181, 72, 0.28),
+      transparent 26%
+    ),
     linear-gradient(135deg, #39220e, #100906 75%);
 }
 
@@ -1031,7 +1108,7 @@ button {
   transform: translateY(28px);
   transition:
     opacity 800ms ease,
-    transform 900ms cubic-bezier(.22,.7,.2,1);
+    transform 900ms cubic-bezier(0.22, 0.7, 0.2, 1);
 }
 
 [data-reveal].is-visible {
@@ -1040,19 +1117,37 @@ button {
 }
 
 @keyframes heroFloat {
-  0%, 100% { transform: translateY(0) rotate(-0.4deg); }
-  50% { transform: translateY(-10px) rotate(0.4deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(-0.4deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(0.4deg);
+  }
 }
 
 @keyframes metalFlare {
-  0% { transform: translate(-8%, 7%) rotate(-8deg); opacity: 0.18; }
-  46% { opacity: 0.5; }
-  100% { transform: translate(9%, -8%) rotate(8deg); opacity: 0.25; }
+  0% {
+    transform: translate(-8%, 7%) rotate(-8deg);
+    opacity: 0.18;
+  }
+  46% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(9%, -8%) rotate(8deg);
+    opacity: 0.25;
+  }
 }
 
 @keyframes scrollLine {
-  0% { transform: translateX(-100%); }
-  55%, 100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+  55%,
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 @media (max-width: 980px) {
@@ -1321,7 +1416,10 @@ button {
   text-transform: uppercase;
   cursor: pointer;
   backdrop-filter: blur(12px);
-  transition: border-color 180ms ease, color 180ms ease, background 180ms ease;
+  transition:
+    border-color 180ms ease,
+    color 180ms ease,
+    background 180ms ease;
 }
 
 .ambient-audio-toggle > span {
@@ -1329,7 +1427,9 @@ button {
   height: 6px;
   border-radius: 50%;
   background: rgba(244, 231, 204, 0.4);
-  transition: background 180ms ease, box-shadow 180ms ease;
+  transition:
+    background 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .ambient-audio-toggle--on {
