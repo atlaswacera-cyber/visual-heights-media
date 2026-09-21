@@ -494,7 +494,40 @@ button {
     transform 850ms cubic-bezier(0.22, 0.7, 0.2, 1);
 }
 
+.hero-artist-card::before,
+.hero-artist-card::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.hero-artist-card::before {
+  inset: -25%;
+  opacity: 0.46;
+  background:
+    radial-gradient(ellipse 19% 12% at 72% 21%, rgba(255, 242, 202, 0.95), rgba(246, 183, 62, 0.34) 26%, transparent 72%),
+    radial-gradient(ellipse 31% 20% at 69% 24%, rgba(244, 157, 35, 0.16), transparent 72%);
+  filter: blur(1px);
+  animation: artistLensDrift 11s ease-in-out infinite alternate;
+}
+
+.hero-artist-card::after {
+  top: -18%;
+  left: 48%;
+  width: 18%;
+  height: 142%;
+  opacity: 0.26;
+  background: linear-gradient(90deg, transparent, rgba(255, 229, 159, 0.88), rgba(230, 139, 24, 0.22), transparent);
+  filter: blur(8px);
+  transform: rotate(21deg);
+  animation: artistLightSweep 9s ease-in-out infinite alternate;
+}
+
 .hero-artist-card > img {
+  position: relative;
+  z-index: 0;
   width: 100%;
   height: 100%;
   display: block;
@@ -506,6 +539,7 @@ button {
 
 .hero-artist-card__shade {
   position: absolute;
+  z-index: 1;
   inset: 0;
   background: linear-gradient(
     180deg,
@@ -516,7 +550,7 @@ button {
 
 .hero-artist-card__copy {
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   right: clamp(16px, 2vw, 30px);
   bottom: clamp(17px, 2vw, 31px);
   left: clamp(16px, 2vw, 30px);
@@ -1137,6 +1171,26 @@ button {
   100% {
     transform: translate(9%, -8%) rotate(8deg);
     opacity: 0.25;
+  }
+}
+
+@keyframes artistLensDrift {
+  0% {
+    transform: translate(-10%, 8%) scale(0.95);
+    opacity: 0.28;
+  }
+  100% {
+    transform: translate(9%, -7%) scale(1.1);
+    opacity: 0.55;
+  }
+}
+
+@keyframes artistLightSweep {
+  0% {
+    transform: translateX(-72%) rotate(21deg);
+  }
+  100% {
+    transform: translateX(156%) rotate(21deg);
   }
 }
 
