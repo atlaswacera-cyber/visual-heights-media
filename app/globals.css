@@ -437,6 +437,7 @@ button {
   filter: blur(30px);
   opacity: 0.92;
   animation: heroBackdropGlow 9s ease-in-out infinite alternate;
+  transition: transform 720ms cubic-bezier(0.22, 0.7, 0.2, 1), opacity 520ms ease;
 }
 
 .hero-identity {
@@ -465,6 +466,10 @@ button {
     0 0 98px rgba(146, 75, 11, 0.25);
   opacity: 0.88;
   animation: relicAuraFloat 7s ease-in-out infinite;
+  transition:
+    transform 720ms cubic-bezier(0.22, 0.7, 0.2, 1),
+    opacity 520ms ease,
+    filter 520ms ease;
 }
 
 .hero-identity:focus-visible {
@@ -724,7 +729,18 @@ button {
 
 .hero__visual--artist::before,
 .hero__visual--artist .hero-identity__aura {
-  animation-play-state: paused;
+  animation: none;
+}
+
+.hero__visual--artist::before {
+  opacity: 0.82;
+  transform: translateX(0) scale(1);
+}
+
+.hero__visual--artist .hero-identity__aura {
+  opacity: 0.76;
+  transform: translateY(0) rotate(0);
+  filter: brightness(0.98);
 }
 
 .hero__visual--artist .hero-artist-card {
