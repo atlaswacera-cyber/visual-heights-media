@@ -239,7 +239,7 @@ button {
   pointer-events: none;
   opacity: 0;
   background-image:
-    url("/vhm-monogram-gold.png"),
+    url("/vhm-monogram-gold.png?v=3"),
     radial-gradient(
       ellipse 22% 18% at 71% 37%,
       rgba(255, 231, 170, 0.62),
@@ -423,6 +423,20 @@ button {
 .hero__visual {
   width: min(36vw, 510px);
   justify-self: center;
+}
+
+.hero__visual::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -28% -35%;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 46% 42% at 42% 55%, rgba(242, 162, 40, 0.28), rgba(185, 101, 18, 0.12) 42%, transparent 74%),
+    radial-gradient(ellipse 26% 32% at 68% 43%, rgba(255, 218, 136, 0.16), transparent 72%);
+  filter: blur(20px);
+  opacity: 0.9;
+  animation: heroBackdropGlow 9s ease-in-out infinite alternate;
 }
 
 .hero-identity {
@@ -1325,6 +1339,17 @@ button {
   }
   100% {
     transform: translate(9%, -7%) scale(1.1);
+  }
+}
+
+@keyframes heroBackdropGlow {
+  from {
+    opacity: 0.62;
+    transform: scale(0.96) translateX(-2%);
+  }
+  to {
+    opacity: 0.96;
+    transform: scale(1.05) translateX(2%);
   }
 }
 
