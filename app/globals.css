@@ -429,13 +429,13 @@ button {
   content: "";
   position: absolute;
   z-index: 0;
-  inset: -24% -30%;
+  inset: -16%;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 52% 48% at 40% 58%, rgba(242, 162, 40, 0.38), rgba(185, 101, 18, 0.17) 43%, transparent 74%),
-    radial-gradient(ellipse 30% 36% at 68% 43%, rgba(255, 218, 136, 0.2), transparent 72%);
-  filter: blur(24px);
-  opacity: 0.96;
+    radial-gradient(ellipse 70% 76% at 50% 52%, rgba(252, 181, 49, 0.34), rgba(180, 100, 18, 0.19) 43%, transparent 73%),
+    radial-gradient(ellipse 35% 40% at 50% 27%, rgba(255, 225, 151, 0.16), transparent 72%);
+  filter: blur(30px);
+  opacity: 0.92;
   animation: heroBackdropGlow 9s ease-in-out infinite alternate;
 }
 
