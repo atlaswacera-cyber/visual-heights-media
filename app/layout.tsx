@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   description:
     "A Chicago media production studio creating film, photography, and visual direction with clarity, character, and vintage soul.",
   icons: {
-    icon: [{ url: "/favicon.png?v=3", type: "image/png", sizes: "128x128" }],
-    shortcut: "/favicon.png?v=3",
-    apple: "/favicon.png?v=3",
+    icon: [{ url: "/favicon.svg?v=4", type: "image/svg+xml", sizes: "any" }],
+    shortcut: "/favicon.svg?v=4",
+    apple: "/favicon.png?v=4",
   },
 };
 
@@ -20,6 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=4" />
+        <link rel="shortcut icon" href="/favicon.svg?v=4" />
         <link rel="preload" as="image" href="/atlas-wacera.jpg" />
       </head>
       <body>{children}</body>
