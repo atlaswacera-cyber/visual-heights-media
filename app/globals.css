@@ -428,19 +428,20 @@ button {
 .hero__visual::before {
   content: "";
   position: absolute;
-  z-index: -1;
-  inset: -28% -35%;
+  z-index: 0;
+  inset: -24% -30%;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 46% 42% at 42% 55%, rgba(242, 162, 40, 0.28), rgba(185, 101, 18, 0.12) 42%, transparent 74%),
-    radial-gradient(ellipse 26% 32% at 68% 43%, rgba(255, 218, 136, 0.16), transparent 72%);
-  filter: blur(20px);
-  opacity: 0.9;
+    radial-gradient(ellipse 52% 48% at 40% 58%, rgba(242, 162, 40, 0.38), rgba(185, 101, 18, 0.17) 43%, transparent 74%),
+    radial-gradient(ellipse 30% 36% at 68% 43%, rgba(255, 218, 136, 0.2), transparent 72%);
+  filter: blur(24px);
+  opacity: 0.96;
   animation: heroBackdropGlow 9s ease-in-out infinite alternate;
 }
 
 .hero-identity {
   position: relative;
+  z-index: 1;
   width: 100%;
   aspect-ratio: 0.718;
   display: block;
@@ -708,6 +709,8 @@ button {
 }
 
 .hero__visual-label {
+  position: relative;
+  z-index: 1;
   display: block;
   margin-top: 17px;
   color: rgba(238, 233, 221, 0.44);
