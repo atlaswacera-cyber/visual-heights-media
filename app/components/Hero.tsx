@@ -78,6 +78,7 @@ export function Hero() {
           aria-pressed={artistOpen}
           onClick={toggleArtist}
         >
+          <span className="hero-identity__aura" aria-hidden="true" />
           <span className="hero-mark-crop" aria-hidden="true"><img src="/vhm-monogram-gold.png?v=3" alt="" /></span>
           <span className="hero-artist-card">
             <img src="/atlas-wacera.jpg" alt="Atlas Wacera standing in front of a brick archway" fetchPriority="high" decoding="sync" />

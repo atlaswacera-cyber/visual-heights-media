@@ -446,10 +446,25 @@ button {
   aspect-ratio: 0.718;
   display: block;
   padding: 0;
-  overflow: hidden;
+  overflow: visible;
   border: 0;
   background: transparent;
   cursor: pointer;
+}
+
+.hero-identity__aura {
+  position: absolute;
+  z-index: 0;
+  inset: -13px;
+  pointer-events: none;
+  border: 1px solid rgba(244, 185, 69, 0.14);
+  box-shadow:
+    0 0 0 8px rgba(221, 145, 30, 0.035),
+    0 0 0 22px rgba(171, 95, 14, 0.02),
+    0 0 34px rgba(243, 171, 47, 0.18),
+    0 0 92px rgba(146, 75, 11, 0.2);
+  opacity: 0.78;
+  animation: relicAura 10s ease-in-out infinite alternate;
 }
 
 .hero-identity:focus-visible {
@@ -481,6 +496,7 @@ button {
 
 .hero-mark-crop {
   position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
   display: block;
@@ -1357,6 +1373,17 @@ button {
   to {
     opacity: 0.96;
     transform: scale(1.05) translateX(2%);
+  }
+}
+
+@keyframes relicAura {
+  from {
+    opacity: 0.54;
+    filter: brightness(0.9);
+  }
+  to {
+    opacity: 0.9;
+    filter: brightness(1.16);
   }
 }
 
