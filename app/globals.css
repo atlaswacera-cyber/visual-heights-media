@@ -464,7 +464,7 @@ button {
     0 0 34px rgba(243, 171, 47, 0.18),
     0 0 92px rgba(146, 75, 11, 0.2);
   opacity: 0.78;
-  animation: relicAura 10s ease-in-out infinite alternate;
+  animation: relicAuraFloat 7s ease-in-out infinite;
 }
 
 .hero-identity:focus-visible {
@@ -1376,13 +1376,16 @@ button {
   }
 }
 
-@keyframes relicAura {
-  from {
+@keyframes relicAuraFloat {
+  0%,
+  100% {
     opacity: 0.54;
+    transform: translateY(0) rotate(-0.4deg);
     filter: brightness(0.9);
   }
-  to {
+  50% {
     opacity: 0.9;
+    transform: translateY(-10px) rotate(0.4deg);
     filter: brightness(1.16);
   }
 }
