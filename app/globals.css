@@ -240,12 +240,28 @@ button {
   opacity: 0;
   background-image:
     url("/vhm-monogram-gold.png"),
-    radial-gradient(ellipse 22% 18% at 71% 37%, rgba(255, 231, 170, 0.62), rgba(244, 157, 30, 0.13) 36%, transparent 72%),
-    radial-gradient(ellipse 28% 22% at 31% 72%, rgba(229, 139, 24, 0.16), transparent 72%);
+    radial-gradient(
+      ellipse 22% 18% at 71% 37%,
+      rgba(255, 231, 170, 0.62),
+      rgba(244, 157, 30, 0.13) 36%,
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 28% 22% at 31% 72%,
+      rgba(229, 139, 24, 0.16),
+      transparent 72%
+    );
   background-repeat: no-repeat;
-  background-position: center 53%, 71% 37%, 31% 72%;
-  background-size: clamp(780px, 86vw, 1520px) auto, 48% 46%, 42% 40%;
-  filter: saturate(0.82) blur(0.35px) drop-shadow(0 0 38px rgba(239, 168, 47, 0.24));
+  background-position:
+    center 53%,
+    71% 37%,
+    31% 72%;
+  background-size:
+    clamp(780px, 86vw, 1520px) auto,
+    48% 46%,
+    42% 40%;
+  filter: saturate(0.82) blur(0.35px)
+    drop-shadow(0 0 38px rgba(239, 168, 47, 0.24));
   transform: scale(0.93);
   transition:
     opacity 900ms ease 100ms,
@@ -487,6 +503,12 @@ button {
   mix-blend-mode: screen;
   background:
     radial-gradient(
+      ellipse 58% 48% at 48% 62%,
+      rgba(244, 157, 35, 0.27),
+      rgba(232, 145, 32, 0.1) 42%,
+      transparent 74%
+    ),
+    radial-gradient(
       ellipse 5% 34% at 27% 46%,
       rgba(255, 237, 180, 0.86),
       rgba(242, 174, 48, 0.18) 34%,
@@ -541,8 +563,17 @@ button {
   inset: -25%;
   opacity: 0;
   background:
-    radial-gradient(ellipse 19% 12% at 72% 21%, rgba(255, 242, 202, 0.95), rgba(246, 183, 62, 0.34) 26%, transparent 72%),
-    radial-gradient(ellipse 31% 20% at 69% 24%, rgba(244, 157, 35, 0.16), transparent 72%);
+    radial-gradient(
+      ellipse 19% 12% at 72% 21%,
+      rgba(255, 242, 202, 0.95),
+      rgba(246, 183, 62, 0.34) 26%,
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 31% 20% at 69% 24%,
+      rgba(244, 157, 35, 0.16),
+      transparent 72%
+    );
   filter: blur(1px);
   animation: artistLensDrift 11s ease-in-out infinite alternate;
   animation-play-state: paused;
@@ -555,7 +586,13 @@ button {
   width: 18%;
   height: 142%;
   opacity: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 229, 159, 0.88), rgba(230, 139, 24, 0.22), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 229, 159, 0.88),
+    rgba(230, 139, 24, 0.22),
+    transparent
+  );
   filter: blur(8px);
   transform: rotate(21deg);
   animation: artistLightSweep 9s ease-in-out infinite alternate;
@@ -1250,16 +1287,20 @@ button {
   0% {
     opacity: 0.055;
     transform: var(--artist-watermark-exit-transform, translateX(3%) scale(1));
-    filter: saturate(0.82) blur(0.35px) drop-shadow(0 0 38px rgba(239, 168, 47, 0.24));
+    filter: saturate(0.82) blur(0.35px)
+      drop-shadow(0 0 38px rgba(239, 168, 47, 0.24));
   }
   20% {
     opacity: 0.22;
-    transform: var(--artist-watermark-exit-transform, translateX(3%) scale(1)) scale(1.015);
-    filter: saturate(1.2) brightness(1.65) blur(0.5px) drop-shadow(0 0 76px rgba(255, 204, 100, 0.8));
+    transform: var(--artist-watermark-exit-transform, translateX(3%) scale(1))
+      scale(1.015);
+    filter: saturate(1.2) brightness(1.65) blur(0.5px)
+      drop-shadow(0 0 76px rgba(255, 204, 100, 0.8));
   }
   100% {
     opacity: 0;
-    transform: var(--artist-watermark-exit-transform, translateX(3%) scale(1)) scale(1.06);
+    transform: var(--artist-watermark-exit-transform, translateX(3%) scale(1))
+      scale(1.06);
     filter: saturate(0.9) blur(1px) drop-shadow(0 0 20px rgba(239, 168, 47, 0));
   }
 }
