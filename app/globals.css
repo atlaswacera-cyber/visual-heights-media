@@ -722,6 +722,11 @@ button {
   animation: none;
 }
 
+.hero__visual--artist::before,
+.hero__visual--artist .hero-identity__aura {
+  animation-play-state: paused;
+}
+
 .hero__visual--artist .hero-artist-card {
   opacity: 1;
   transform: scale(1) rotate(0);
