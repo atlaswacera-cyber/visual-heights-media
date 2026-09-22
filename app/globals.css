@@ -459,11 +459,11 @@ button {
   pointer-events: none;
   border: 1px solid rgba(244, 185, 69, 0.14);
   box-shadow:
-    0 0 0 8px rgba(221, 145, 30, 0.035),
-    0 0 0 22px rgba(171, 95, 14, 0.02),
-    0 0 34px rgba(243, 171, 47, 0.18),
-    0 0 92px rgba(146, 75, 11, 0.2);
-  opacity: 0.78;
+    0 0 0 8px rgba(221, 145, 30, 0.05),
+    0 0 0 22px rgba(171, 95, 14, 0.03),
+    0 0 38px rgba(243, 171, 47, 0.24),
+    0 0 98px rgba(146, 75, 11, 0.25);
+  opacity: 0.88;
   animation: relicAuraFloat 7s ease-in-out infinite;
 }
 
@@ -1379,12 +1379,12 @@ button {
 @keyframes relicAuraFloat {
   0%,
   100% {
-    opacity: 0.54;
+    opacity: 0.64;
     transform: translateY(0) rotate(-0.4deg);
     filter: brightness(0.9);
   }
   50% {
-    opacity: 0.9;
+    opacity: 1;
     transform: translateY(-10px) rotate(0.4deg);
     filter: brightness(1.16);
   }
