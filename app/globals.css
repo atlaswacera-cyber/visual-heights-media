@@ -731,7 +731,7 @@ button {
 }
 
 .hero__visual--artist {
-  transform: scale(1.25);
+  transform: scale(1.09);
 }
 
 .hero__visual--artist::before,
