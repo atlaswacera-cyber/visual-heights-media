@@ -48,7 +48,7 @@ export function Services() {
         window.requestAnimationFrame(() => {
           window.requestAnimationFrame(() => setIsRestoring(false));
         });
-      }, 1100);
+      }, 500);
       return;
     }
 
