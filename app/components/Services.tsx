@@ -6,8 +6,8 @@ const services = [
 
 export function Services() {
   return <section className="services section section--dark" id="services">
-    <div className="section__topline" data-reveal><p className="eyebrow">What we make</p><span className="section-number">02 / 04</span></div>
-    <div className="services__heading" data-reveal><h2>One vision.</h2><p>Every frame considered.</p></div>
+    <div className="section__topline" data-reveal><p className="eyebrow">Ways to work together</p><span className="section-number">02 / 04</span></div>
+    <div className="services__heading" data-reveal><h2>Creative services.</h2><p>One vision. Every frame considered.</p></div>
     <div className="services__list">{services.map((service) => <article className="service" key={service.number} data-reveal><span className="service__number">{service.number}</span><div className="service__title"><h3>{service.title}</h3><em>{service.subtitle}</em></div><p>{service.description}</p><span className="service__arrow" aria-hidden="true">↗</span></article>)}</div>
   </section>;
 }
