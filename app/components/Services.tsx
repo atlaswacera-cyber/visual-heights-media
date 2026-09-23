@@ -38,7 +38,11 @@ export function Services() {
       return;
     }
     setActiveService(slug);
-    window.setTimeout(() => document.getElementById(`service-${slug}`)?.scrollIntoView({ behavior: "smooth", block: "start" }), 40);
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        document.getElementById(`service-${slug}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
   };
 
   return <section className="services section section--dark" id="services">
@@ -48,7 +52,7 @@ export function Services() {
       {services.map((service) => {
         const isActive = activeService === service.slug;
         const isMuted = Boolean(activeService && !isActive);
-        return <article className={`service${isActive ? " service--active" : ""}${isMuted ? " service--muted" : ""}`} id={`service-${service.slug}`} key={service.number} data-reveal>
+        return <article className={`service${isActive ? " service--active" : ""}${isMuted ? " service--muted" : ""}`} id={`service-${service.slug}`} key={service.number}>
           <button className="service__trigger" type="button" onClick={() => selectService(service.slug)} aria-expanded={isActive}>
             <span className="service__number">{service.number}</span>
             <span className="service__title"><strong>{service.title}</strong><em>{service.subtitle}</em></span>
