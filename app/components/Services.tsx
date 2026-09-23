@@ -32,6 +32,7 @@ const services = [
 export function Services() {
   const [activeService, setActiveService] = useState<string | null>(null);
   const [detailVisible, setDetailVisible] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => () => {
@@ -41,13 +42,16 @@ export function Services() {
   const selectService = (slug: string) => {
     if (activeService === slug) {
       setDetailVisible(false);
+      setIsClosing(true);
       closeTimerRef.current = window.setTimeout(() => {
         setActiveService(null);
-      }, 90);
+        setIsClosing(false);
+      }, 900);
       return;
     }
 
     if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
+    setIsClosing(false);
     setActiveService(slug);
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
@@ -63,7 +67,7 @@ export function Services() {
     <div className={`services__list${activeService ? " services__list--focused" : ""}`}>
       {services.map((service) => {
         const isActive = activeService === service.slug;
-        const isMuted = Boolean(activeService && !isActive);
+        const isMuted = Boolean(activeService && !isActive && !isClosing);
         return <article className={`service${isActive ? " service--active" : ""}${isMuted ? " service--muted" : ""}`} id={`service-${service.slug}`} key={service.number}>
           <button className="service__trigger" type="button" onClick={() => selectService(service.slug)} aria-expanded={isActive} aria-label={isActive ? `Close ${service.title} details` : `Open ${service.title} details`}>
             <span className="service__number">{service.number}</span>
