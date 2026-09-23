@@ -423,6 +423,9 @@ button {
 .hero__visual {
   width: min(36vw, 510px);
   justify-self: center;
+  transform: scale(1);
+  transform-origin: center;
+  transition: transform 1050ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero__visual::before {
@@ -725,6 +728,10 @@ button {
   opacity: 0;
   transform: scale(1.28) rotate(8deg);
   animation: none;
+}
+
+.hero__visual--artist {
+  transform: scale(1.25);
 }
 
 .hero__visual--artist::before,
