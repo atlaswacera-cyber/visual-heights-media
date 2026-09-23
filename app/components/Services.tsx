@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const services = [
   {
@@ -31,15 +31,25 @@ const services = [
 
 export function Services() {
   const [activeService, setActiveService] = useState<string | null>(null);
+  const [detailVisible, setDetailVisible] = useState(false);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => () => {
+    if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
+  }, []);
 
   const selectService = (slug: string) => {
     if (activeService === slug) {
-      setActiveService(null);
+      setDetailVisible(false);
+      closeTimerRef.current = window.setTimeout(() => setActiveService(null), 480);
       return;
     }
+
+    if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
     setActiveService(slug);
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
+        setDetailVisible(true);
         document.getElementById(`service-${slug}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     });
@@ -59,7 +69,7 @@ export function Services() {
             <span className="service__summary">{service.description}</span>
             <span className="service__arrow" aria-hidden="true">{isActive ? "×" : "↗"}</span>
           </button>
-          {isActive && <div className="service-detail">
+          {isActive && <div className={`service-detail${detailVisible ? " service-detail--visible" : ""}`}>
             <figure className="service-detail__visual"><img src={service.image} alt={service.imageAlt} /><figcaption>{service.visualLabel}</figcaption></figure>
             <div className="service-detail__copy">
               <p className="eyebrow">What it can include</p>
