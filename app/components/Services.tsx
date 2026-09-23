@@ -41,7 +41,7 @@ export function Services() {
   const selectService = (slug: string) => {
     if (activeService === slug) {
       setDetailVisible(false);
-      closeTimerRef.current = window.setTimeout(() => setActiveService(null), 480);
+      closeTimerRef.current = window.setTimeout(() => setActiveService(null), 760);
       return;
     }
 
@@ -63,11 +63,11 @@ export function Services() {
         const isActive = activeService === service.slug;
         const isMuted = Boolean(activeService && !isActive);
         return <article className={`service${isActive ? " service--active" : ""}${isMuted ? " service--muted" : ""}`} id={`service-${service.slug}`} key={service.number}>
-          <button className="service__trigger" type="button" onClick={() => selectService(service.slug)} aria-expanded={isActive}>
+          <button className="service__trigger" type="button" onClick={() => selectService(service.slug)} aria-expanded={isActive} aria-label={isActive ? `Close ${service.title} details` : `Open ${service.title} details`}>
             <span className="service__number">{service.number}</span>
             <span className="service__title"><strong>{service.title}</strong><em>{service.subtitle}</em></span>
             <span className="service__summary">{service.description}</span>
-            <span className="service__arrow" aria-hidden="true">{isActive ? "×" : "↗"}</span>
+            <span className="service__arrow" aria-hidden="true">{isActive ? <img src="/vhm-monogram-gold.png?v=3" alt="" /> : "↗"}</span>
           </button>
           {isActive && <div className={`service-detail${detailVisible ? " service-detail--visible" : ""}`}>
             <figure className="service-detail__visual"><img src={service.image} alt={service.imageAlt} /><figcaption>{service.visualLabel}</figcaption></figure>
