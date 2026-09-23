@@ -1072,8 +1072,7 @@ button {
   outline-offset: -4px;
 }
 
-.service--muted,
-.service--returning {
+.service--muted {
   min-height: 0;
   max-height: 0;
   overflow: hidden;
@@ -1083,8 +1082,7 @@ button {
   transform: translateY(14px);
 }
 
-.service--muted .service__trigger,
-.service--returning .service__trigger {
+.service--muted .service__trigger {
   min-height: 0;
   padding-top: 0;
   padding-bottom: 0;
