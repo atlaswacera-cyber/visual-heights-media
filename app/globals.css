@@ -929,7 +929,7 @@ button {
   min-height: 190px;
   border-bottom: 1px solid var(--line-light);
   scroll-margin-top: 92px;
-  transition: opacity 850ms ease, max-height 1600ms cubic-bezier(0.65, 0, 0.35, 1), border-color 850ms ease;
+  transition: opacity 500ms ease, max-height 700ms ease, border-color 400ms ease;
 }
 
 .service:not(.service--active) {
@@ -937,7 +937,7 @@ button {
 }
 
 .service--active {
-  max-height: 1500px;
+  max-height: none;
 }
 
 .service::before {
@@ -948,7 +948,12 @@ button {
   background: linear-gradient(100deg, #8c4e0e, var(--gold-bright), #9e5a0e);
   transform: scaleY(0);
   transform-origin: bottom;
-  transition: transform 2200ms cubic-bezier(0.65, 0, 0.35, 1);
+  transition: transform 900ms cubic-bezier(0.22, 0.7, 0.2, 1);
+}
+
+.service:hover:not(.service--active)::before {
+  transition-duration: 350ms;
+  transition-timing-function: cubic-bezier(0.22, 0.7, 0.2, 1);
 }
 
 .service__trigger,
@@ -1079,21 +1084,27 @@ button {
 }
 
 .service-detail {
-  padding: 0 65px 64px 100px;
+  max-height: 0;
+  padding: 0 65px 0 100px;
   display: grid;
   grid-template-columns: minmax(220px, 0.78fr) minmax(0, 1fr);
   align-items: start;
   gap: clamp(34px, 6vw, 96px);
   color: #120a04;
+  overflow: hidden;
   opacity: 0;
   transform: translateY(17px) scale(0.99);
   transition:
-    opacity 700ms ease,
-    transform 900ms cubic-bezier(0.22, 0.7, 0.2, 1);
+    max-height 1050ms cubic-bezier(0.22, 0.7, 0.2, 1),
+    padding 1050ms cubic-bezier(0.22, 0.7, 0.2, 1),
+    opacity 620ms ease,
+    transform 850ms cubic-bezier(0.22, 0.7, 0.2, 1);
   will-change: opacity, transform;
 }
 
 .service-detail--visible {
+  max-height: 1300px;
+  padding-bottom: 64px;
   opacity: 1;
   transform: translateY(0) scale(1);
   transition-delay: 110ms;
@@ -1766,9 +1777,13 @@ button {
   }
 
   .service-detail {
-    padding: 0 42px 46px 54px;
+    padding: 0 42px 0 54px;
     grid-template-columns: 1fr;
     gap: 28px;
+  }
+
+  .service-detail--visible {
+    padding-bottom: 46px;
   }
 
   .service-detail__visual {

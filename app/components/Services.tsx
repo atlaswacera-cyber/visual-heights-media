@@ -69,7 +69,7 @@ export function Services() {
             <span className="service__summary">{service.description}</span>
             <span className="service__arrow" aria-hidden="true">{isActive ? <img src="/vhm-monogram-gold.png?v=3" alt="" /> : "↗"}</span>
           </button>
-          {isActive && <div className={`service-detail${detailVisible ? " service-detail--visible" : ""}`}>
+          <div className={`service-detail${isActive && detailVisible ? " service-detail--visible" : ""}`} aria-hidden={!isActive}>
             <figure className="service-detail__visual"><img src={service.image} alt={service.imageAlt} /><figcaption>{service.visualLabel}</figcaption></figure>
             <div className="service-detail__copy">
               <p className="eyebrow">What it can include</p>
@@ -78,7 +78,7 @@ export function Services() {
               <p className="service-detail__best"><span>Best for</span>{service.bestFor}</p>
               <span className="service-detail__return">Click {service.number} again to return to all services.</span>
             </div>
-          </div>}
+          </div>
         </article>;
       })}
     </div>
