@@ -929,7 +929,7 @@ button {
   min-height: 190px;
   border-bottom: 1px solid var(--line-light);
   scroll-margin-top: 92px;
-  transition: opacity 750ms ease, max-height 1250ms cubic-bezier(0.16, 1, 0.3, 1), border-color 700ms ease;
+  transition: opacity 850ms ease, max-height 1600ms cubic-bezier(0.65, 0, 0.35, 1), border-color 850ms ease;
 }
 
 .service:not(.service--active) {
@@ -948,7 +948,7 @@ button {
   background: linear-gradient(100deg, #8c4e0e, var(--gold-bright), #9e5a0e);
   transform: scaleY(0);
   transform-origin: bottom;
-  transition: transform 1250ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 2200ms cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .service__trigger,

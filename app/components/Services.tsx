@@ -41,7 +41,7 @@ export function Services() {
   const selectService = (slug: string) => {
     if (activeService === slug) {
       setDetailVisible(false);
-      closeTimerRef.current = window.setTimeout(() => setActiveService(null), 920);
+      closeTimerRef.current = window.setTimeout(() => setActiveService(null), 1100);
       return;
     }
 
