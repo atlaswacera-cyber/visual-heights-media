@@ -927,9 +927,10 @@ button {
 .service {
   position: relative;
   min-height: 190px;
+  overflow: hidden;
   border-bottom: 1px solid var(--line-light);
   scroll-margin-top: 92px;
-  transition: opacity 620ms ease, max-height 820ms cubic-bezier(0.22, 0.7, 0.2, 1), border-color 520ms ease, transform 620ms cubic-bezier(0.22, 0.7, 0.2, 1);
+  transition: opacity 500ms ease-out, max-height 600ms cubic-bezier(0.16, 1, 0.3, 1), border-color 420ms ease-out, transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .service:not(.service--active) {
@@ -975,6 +976,7 @@ button {
   text-align: left;
   background: transparent;
   cursor: pointer;
+  transition: min-height 600ms cubic-bezier(0.16, 1, 0.3, 1), padding 600ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .service__trigger:hover,
@@ -1075,7 +1077,6 @@ button {
 .service--muted {
   min-height: 0;
   max-height: 0;
-  overflow: hidden;
   border-color: transparent;
   opacity: 0;
   pointer-events: none;
