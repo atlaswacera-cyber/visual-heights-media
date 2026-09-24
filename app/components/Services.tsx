@@ -123,10 +123,10 @@ export function Services() {
       {services.map((service) => {
         const isActive = activeService === service.slug;
         const isMuted = Boolean(activeService && !isActive && !isClosing);
-        return <article className={`service${isActive ? " service--active" : ""}${isActive && isClosing ? " service--closing" : ""}${isMuted ? " service--muted" : ""}`} id={`service-${service.slug}`} key={service.number}>
+        return <article className={`service${isActive ? " service--active" : ""}${isMuted ? " service--muted" : ""}`} id={`service-${service.slug}`} key={service.number}>
           <button className="service__trigger" type="button" onClick={() => selectService(service.slug)} aria-expanded={isActive} aria-label={isActive ? `Close ${service.title} details` : `Open ${service.title} details`}>
             <span className="service__number">{service.number}</span>
-            <span className="service__title"><strong>{service.title}</strong><em>{service.subtitle}</em></span>
+            <span className="service__title"><strong data-title={service.title}>{service.title}</strong><em>{service.subtitle}</em></span>
             <span className="service__summary">{service.description}</span>
             <span className="service__arrow" aria-hidden="true">{isActive ? <img src="/vhm-monogram-gold.png?v=3" alt="" /> : "↗"}</span>
           </button>

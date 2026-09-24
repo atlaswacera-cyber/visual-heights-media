@@ -1011,6 +1011,7 @@ button {
 }
 
 .service__title strong {
+  position: relative;
   display: block;
   margin: 0;
   font-size: clamp(42px, 5vw, 78px);
@@ -1037,13 +1038,22 @@ button {
   -webkit-background-clip: text;
   background-clip: text;
   filter: drop-shadow(0 0 7px rgba(255, 226, 143, 0.3));
-  animation:
-    serviceTitleIgnite 480ms cubic-bezier(0.16, 1, 0.3, 1) both,
-    serviceTitleDrift 20s ease-in-out 480ms infinite alternate;
+  animation: serviceTitleFlare 8s ease-in-out infinite;
 }
 
-.service--active.service--closing .service__title strong {
-  animation: serviceTitleCloseFlare 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
+.service--active .service__title strong::after {
+  content: attr(data-title);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  background: linear-gradient(105deg, transparent 32%, rgba(255, 248, 214, 0.78) 47%, rgba(255, 205, 85, 0.2) 55%, transparent 69%);
+  background-size: 260% 100%;
+  background-position: 100% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: 0.68;
+  pointer-events: none;
+  animation: serviceTitlePan 22s ease-in-out infinite alternate;
 }
 
 .service__title em {
@@ -1536,44 +1546,28 @@ button {
   }
 }
 
-@keyframes serviceTitleIgnite {
-  0% {
+@keyframes serviceTitleFlare {
+  0%,
+  100% {
     background-position: 100% 50%;
-    filter: drop-shadow(0 0 5px rgba(255, 222, 130, 0.12));
+    filter: drop-shadow(0 0 6px rgba(255, 222, 130, 0.18));
   }
-  58% {
-    background-position: 20% 50%;
-    filter: drop-shadow(0 0 16px rgba(255, 232, 161, 0.58));
+  45% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 14px rgba(255, 232, 161, 0.48));
   }
-  100% {
-    background-position: 18% 50%;
-    filter: drop-shadow(0 0 8px rgba(255, 217, 112, 0.28));
-  }
-}
-
-@keyframes serviceTitleCloseFlare {
-  0% {
-    background-position: 24% 50%;
-    filter: drop-shadow(0 0 8px rgba(255, 217, 112, 0.28));
-  }
-  48% {
-    background-position: 2% 50%;
-    filter: drop-shadow(0 0 18px rgba(255, 238, 178, 0.66));
-  }
-  100% {
-    background-position: -18% 50%;
-    filter: drop-shadow(0 0 5px rgba(255, 217, 112, 0.12));
+  55% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 11px rgba(255, 217, 112, 0.36));
   }
 }
 
-@keyframes serviceTitleDrift {
+@keyframes serviceTitlePan {
   from {
-    background-position: 18% 50%;
-    filter: drop-shadow(0 0 8px rgba(255, 217, 112, 0.28));
+    background-position: 100% 50%;
   }
   to {
-    background-position: 82% 50%;
-    filter: drop-shadow(0 0 12px rgba(255, 230, 157, 0.42));
+    background-position: 0% 50%;
   }
 }
 
