@@ -47,12 +47,12 @@ export function Services() {
       if (scrollTimerRef.current) window.clearTimeout(scrollTimerRef.current);
       setDetailVisible(false);
       setIsClosing(true);
+      scrollTimerRef.current = window.setTimeout(() => {
+        servicesListRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 240);
       closeTimerRef.current = window.setTimeout(() => {
         setActiveService(null);
         setIsClosing(false);
-        window.requestAnimationFrame(() => {
-          servicesListRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-        });
       }, 900);
       return;
     }
@@ -66,7 +66,7 @@ export function Services() {
         setDetailVisible(true);
         scrollTimerRef.current = window.setTimeout(() => {
           document.getElementById(`service-${slug}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
-        }, 800);
+        }, 260);
       });
     });
   };
