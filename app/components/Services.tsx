@@ -34,29 +34,39 @@ export function Services() {
   const [detailVisible, setDetailVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const scrollTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const servicesListRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => () => {
     if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
+    if (scrollTimerRef.current) window.clearTimeout(scrollTimerRef.current);
   }, []);
 
   const selectService = (slug: string) => {
     if (activeService === slug) {
+      if (scrollTimerRef.current) window.clearTimeout(scrollTimerRef.current);
       setDetailVisible(false);
       setIsClosing(true);
       closeTimerRef.current = window.setTimeout(() => {
         setActiveService(null);
         setIsClosing(false);
+        window.requestAnimationFrame(() => {
+          servicesListRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
       }, 900);
       return;
     }
 
     if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
+    if (scrollTimerRef.current) window.clearTimeout(scrollTimerRef.current);
     setIsClosing(false);
     setActiveService(slug);
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
         setDetailVisible(true);
-        document.getElementById(`service-${slug}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        scrollTimerRef.current = window.setTimeout(() => {
+          document.getElementById(`service-${slug}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 800);
       });
     });
   };
@@ -64,7 +74,7 @@ export function Services() {
   return <section className="services section section--dark" id="services">
     <div className="section__topline" data-reveal><p className="eyebrow">Ways to work together</p><span className="section-number">02 / 04</span></div>
     <div className="services__heading" data-reveal><h2>Creative services.</h2><p>One vision. Every frame considered.</p></div>
-    <div className={`services__list${activeService ? " services__list--focused" : ""}`}>
+    <div ref={servicesListRef} className={`services__list${activeService ? " services__list--focused" : ""}`}>
       {services.map((service) => {
         const isActive = activeService === service.slug;
         const isMuted = Boolean(activeService && !isActive && !isClosing);
