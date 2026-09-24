@@ -1038,8 +1038,12 @@ button {
   background-clip: text;
   filter: drop-shadow(0 0 7px rgba(255, 226, 143, 0.3));
   animation:
-    serviceTitleIgnite 850ms cubic-bezier(0.16, 1, 0.3, 1) both,
-    serviceTitleDrift 20s ease-in-out 850ms infinite alternate;
+    serviceTitleIgnite 480ms cubic-bezier(0.16, 1, 0.3, 1) both,
+    serviceTitleDrift 20s ease-in-out 480ms infinite alternate;
+}
+
+.service--active.service--closing .service__title strong {
+  animation: serviceTitleCloseFlare 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .service__title em {
@@ -1534,16 +1538,31 @@ button {
 
 @keyframes serviceTitleIgnite {
   0% {
-    background-position: 110% 50%;
+    background-position: 100% 50%;
     filter: drop-shadow(0 0 5px rgba(255, 222, 130, 0.12));
   }
-  64% {
-    background-position: 22% 50%;
-    filter: drop-shadow(0 0 15px rgba(255, 232, 161, 0.52));
+  58% {
+    background-position: 20% 50%;
+    filter: drop-shadow(0 0 16px rgba(255, 232, 161, 0.58));
   }
   100% {
     background-position: 18% 50%;
     filter: drop-shadow(0 0 8px rgba(255, 217, 112, 0.28));
+  }
+}
+
+@keyframes serviceTitleCloseFlare {
+  0% {
+    background-position: 24% 50%;
+    filter: drop-shadow(0 0 8px rgba(255, 217, 112, 0.28));
+  }
+  48% {
+    background-position: 2% 50%;
+    filter: drop-shadow(0 0 18px rgba(255, 238, 178, 0.66));
+  }
+  100% {
+    background-position: -18% 50%;
+    filter: drop-shadow(0 0 5px rgba(255, 217, 112, 0.12));
   }
 }
 
