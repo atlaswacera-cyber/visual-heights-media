@@ -35,11 +35,55 @@ export function Services() {
   const [isClosing, setIsClosing] = useState(false);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const scrollTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const scrollFrameRef = useRef<number | null>(null);
+  const savedScrollBehaviorRef = useRef<string | null>(null);
   const servicesListRef = useRef<HTMLDivElement>(null);
+
+  const stopScrollAnimation = () => {
+    if (scrollFrameRef.current) cancelAnimationFrame(scrollFrameRef.current);
+    scrollFrameRef.current = null;
+    if (savedScrollBehaviorRef.current !== null) {
+      document.documentElement.style.scrollBehavior = savedScrollBehaviorRef.current;
+      savedScrollBehaviorRef.current = null;
+    }
+  };
+
+  const softlyCenter = (element: HTMLElement) => {
+    stopScrollAnimation();
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const bounds = element.getBoundingClientRect();
+    const target = Math.max(0, window.scrollY + bounds.top - (window.innerHeight - bounds.height) / 2);
+
+    if (reduceMotion) {
+      window.scrollTo(0, target);
+      return;
+    }
+
+    const start = window.scrollY;
+    const distance = target - start;
+    const duration = 1150;
+    const startedAt = performance.now();
+    savedScrollBehaviorRef.current = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = "auto";
+
+    const animate = (now: number) => {
+      const progress = Math.min((now - startedAt) / duration, 1);
+      const eased = 0.5 - Math.cos(Math.PI * progress) / 2;
+      window.scrollTo(0, start + distance * eased);
+      if (progress < 1) {
+        scrollFrameRef.current = requestAnimationFrame(animate);
+      } else {
+        stopScrollAnimation();
+      }
+    };
+
+    scrollFrameRef.current = requestAnimationFrame(animate);
+  };
 
   useEffect(() => () => {
     if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
     if (scrollTimerRef.current) window.clearTimeout(scrollTimerRef.current);
+    stopScrollAnimation();
   }, []);
 
   const selectService = (slug: string) => {
@@ -48,7 +92,7 @@ export function Services() {
       setDetailVisible(false);
       setIsClosing(true);
       scrollTimerRef.current = window.setTimeout(() => {
-        servicesListRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+        if (servicesListRef.current) softlyCenter(servicesListRef.current);
       }, 240);
       closeTimerRef.current = window.setTimeout(() => {
         setActiveService(null);
@@ -65,7 +109,8 @@ export function Services() {
       window.requestAnimationFrame(() => {
         setDetailVisible(true);
         scrollTimerRef.current = window.setTimeout(() => {
-          document.getElementById(`service-${slug}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+          const service = document.getElementById(`service-${slug}`);
+          if (service) softlyCenter(service);
         }, 260);
       });
     });
