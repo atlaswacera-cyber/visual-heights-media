@@ -1161,8 +1161,10 @@ button {
 
 .service-detail__overview {
   margin: 18px 0 24px;
-  font-size: clamp(18px, 2vw, 28px);
-  line-height: 1.25;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(20px, 2.1vw, 31px);
+  line-height: 1.22;
+  letter-spacing: -0.02em;
 }
 
 .service-detail__copy ul {
