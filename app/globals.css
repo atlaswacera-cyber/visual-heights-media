@@ -1041,19 +1041,8 @@ button {
   animation: serviceTitleFlare 8s ease-in-out infinite;
 }
 
-.service--active .service__title strong::after {
-  content: attr(data-title);
-  position: absolute;
-  inset: 0;
-  color: transparent;
-  background: linear-gradient(105deg, transparent 32%, rgba(255, 248, 214, 0.78) 47%, rgba(255, 205, 85, 0.2) 55%, transparent 69%);
-  background-size: 260% 100%;
-  background-position: 100% 50%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  opacity: 0.68;
-  pointer-events: none;
-  animation: serviceTitlePan 22s ease-in-out infinite alternate;
+.service--active.service--title-slow .service__title strong {
+  animation-duration: 22s;
 }
 
 .service__title em {
@@ -1559,15 +1548,6 @@ button {
   55% {
     background-position: 0% 50%;
     filter: drop-shadow(0 0 11px rgba(255, 217, 112, 0.36));
-  }
-}
-
-@keyframes serviceTitlePan {
-  from {
-    background-position: 100% 50%;
-  }
-  to {
-    background-position: 0% 50%;
   }
 }
 

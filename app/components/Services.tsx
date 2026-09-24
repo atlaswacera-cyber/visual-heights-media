@@ -33,8 +33,10 @@ export function Services() {
   const [activeService, setActiveService] = useState<string | null>(null);
   const [detailVisible, setDetailVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const [titleSlow, setTitleSlow] = useState(false);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const scrollTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const titleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const scrollFrameRef = useRef<number | null>(null);
   const savedScrollBehaviorRef = useRef<string | null>(null);
   const servicesListRef = useRef<HTMLDivElement>(null);
@@ -83,12 +85,15 @@ export function Services() {
   useEffect(() => () => {
     if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
     if (scrollTimerRef.current) window.clearTimeout(scrollTimerRef.current);
+    if (titleTimerRef.current) window.clearTimeout(titleTimerRef.current);
     stopScrollAnimation();
   }, []);
 
   const selectService = (slug: string) => {
     if (activeService === slug) {
       if (scrollTimerRef.current) window.clearTimeout(scrollTimerRef.current);
+      if (titleTimerRef.current) window.clearTimeout(titleTimerRef.current);
+      setTitleSlow(false);
       setDetailVisible(false);
       setIsClosing(true);
       scrollTimerRef.current = window.setTimeout(() => {
@@ -103,11 +108,14 @@ export function Services() {
 
     if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
     if (scrollTimerRef.current) window.clearTimeout(scrollTimerRef.current);
+    if (titleTimerRef.current) window.clearTimeout(titleTimerRef.current);
     setIsClosing(false);
+    setTitleSlow(false);
     setActiveService(slug);
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
         setDetailVisible(true);
+        titleTimerRef.current = window.setTimeout(() => setTitleSlow(true), 700);
         scrollTimerRef.current = window.setTimeout(() => {
           const service = document.getElementById(`service-${slug}`);
           if (service) softlyCenter(service);
@@ -123,10 +131,10 @@ export function Services() {
       {services.map((service) => {
         const isActive = activeService === service.slug;
         const isMuted = Boolean(activeService && !isActive && !isClosing);
-        return <article className={`service${isActive ? " service--active" : ""}${isMuted ? " service--muted" : ""}`} id={`service-${service.slug}`} key={service.number}>
+        return <article className={`service${isActive ? " service--active" : ""}${isActive && titleSlow ? " service--title-slow" : ""}${isMuted ? " service--muted" : ""}`} id={`service-${service.slug}`} key={service.number}>
           <button className="service__trigger" type="button" onClick={() => selectService(service.slug)} aria-expanded={isActive} aria-label={isActive ? `Close ${service.title} details` : `Open ${service.title} details`}>
             <span className="service__number">{service.number}</span>
-            <span className="service__title"><strong data-title={service.title}>{service.title}</strong><em>{service.subtitle}</em></span>
+            <span className="service__title"><strong>{service.title}</strong><em>{service.subtitle}</em></span>
             <span className="service__summary">{service.description}</span>
             <span className="service__arrow" aria-hidden="true">{isActive ? <img src="/vhm-monogram-gold.png?v=3" alt="" /> : "↗"}</span>
           </button>
