@@ -1,15 +1,17 @@
+import { existsSync, readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import vinext from "vinext";
 import { defineConfig } from "vite";
-import hostingConfig from "./.openai/hosting.json";
-import { sites } from "./build/sites-vite-plugin";
 
 const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
   "00000000-0000-4000-8000-000000000000";
 
+const hostingMetadataPath = resolve(".site", "hosting.json");
+const hostingConfig: { d1?: string | null; r2?: string | null } =
+  existsSync(hostingMetadataPath)
+    ? JSON.parse(readFileSync(hostingMetadataPath, "utf8"))
+    : {};
 const { d1, r2 } = hostingConfig;
-
-// macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
-const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === "seatbelt";
 
 const localBindingConfig = {
   main: "./worker/index.ts",
@@ -42,14 +44,14 @@ export default defineConfig(async () => {
 
   // Wrangler snapshots its log path while the Cloudflare plugin is imported.
   const { cloudflare } = await import("@cloudflare/vite-plugin");
+  const sitesPlugin = existsSync(hostingMetadataPath)
+    ? (await import("./build/sites-vite-plugin")).sites()
+    : null;
 
   return {
-    server: isCodexSeatbeltSandbox
-      ? { watch: { useFsEvents: false, usePolling: true } }
-      : undefined,
     plugins: [
       vinext(),
-      sites(),
+      ...(sitesPlugin ? [sitesPlugin] : []),
       cloudflare({
         viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
         config: localBindingConfig,

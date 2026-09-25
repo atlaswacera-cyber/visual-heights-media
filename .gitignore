@@ -40,3 +40,8 @@ next-env.d.ts
 /.wrangler/
 /outputs/
 /work/
+
+# Private deployment metadata
+/.openai/
+/.site/
+/build/sites-vite-plugin.ts
