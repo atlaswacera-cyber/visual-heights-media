@@ -23,7 +23,7 @@ export default function RootLayout({
         <link rel="icon" type="image/x-icon" href="/favicon.ico?v=6" />
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=6" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=6" />
-        <link rel="preload" as="image" href="/atlas-wacera.jpg" />
+        <link rel="preload" as="image" href="/atlas-wacera-card.jpg" />
       </head>
       <body>{children}</body>
     </html>

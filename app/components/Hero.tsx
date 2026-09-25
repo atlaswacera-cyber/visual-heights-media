@@ -13,7 +13,7 @@ export function Hero() {
 
   useEffect(() => {
     const artistPhoto = new Image();
-    artistPhoto.src = "/atlas-wacera.jpg";
+    artistPhoto.src = "/atlas-wacera-card.jpg";
     void artistPhoto.decode().catch(() => undefined);
   }, []);
 
@@ -81,7 +81,7 @@ export function Hero() {
           <span className="hero-identity__aura" aria-hidden="true" />
           <span className="hero-mark-crop" aria-hidden="true"><img src="/vhm-monogram-gold.png?v=3" alt="" /></span>
           <span className="hero-artist-card">
-            <img src="/atlas-wacera.jpg" alt="Atlas Wacera standing in front of a brick archway" fetchPriority="high" decoding="sync" />
+            <img src="/atlas-wacera-card.jpg" alt="Atlas Wacera standing in front of a brick archway" fetchPriority="high" decoding="async" />
             <span className="hero-artist-card__shade" aria-hidden="true" />
             <span className="hero-artist-card__copy">
               <span className="eyebrow">Meet the artist</span>
