@@ -24,6 +24,11 @@ export default function RootLayout({
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=6" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=6" />
         <link rel="preload" as="image" href="/atlas-wacera-card.jpg" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if ("scrollRestoration" in history) history.scrollRestoration = "manual"; window.scrollTo(0, 0);`,
+          }}
+        />
       </head>
       <body>{children}</body>
     </html>

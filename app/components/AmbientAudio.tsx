@@ -40,6 +40,7 @@ export function AmbientAudio() {
     if (!audio) return false;
 
     if (audio.currentTime < START_AT - 0.25 || audio.ended) audio.currentTime = START_AT;
+    audio.muted = false;
     audio.volume = 0;
     try {
       await audio.play();
@@ -49,6 +50,20 @@ export function AmbientAudio() {
     } catch {
       setEnabled(false);
       return false;
+    }
+  };
+
+  const beginMuted = async () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio.currentTime = START_AT;
+    audio.volume = LISTENING_VOLUME;
+    audio.muted = true;
+    try {
+      await audio.play();
+    } catch {
+      // A later user interaction will use the normal audible start path.
     }
   };
 
@@ -94,13 +109,17 @@ export function AmbientAudio() {
     audio.addEventListener("ended", onEnded);
     window.addEventListener("pointerdown", unlockOnFirstInteraction, { once: true, capture: true });
     window.addEventListener("keydown", unlockOnFirstInteraction, { once: true, capture: true });
-    begin();
+    window.addEventListener("wheel", unlockOnFirstInteraction, { once: true, capture: true, passive: true });
+    window.addEventListener("touchstart", unlockOnFirstInteraction, { once: true, capture: true, passive: true });
+    beginMuted();
 
     return () => {
       audio.removeEventListener("timeupdate", onTimeUpdate);
       audio.removeEventListener("ended", onEnded);
       window.removeEventListener("pointerdown", unlockOnFirstInteraction, true);
       window.removeEventListener("keydown", unlockOnFirstInteraction, true);
+      window.removeEventListener("wheel", unlockOnFirstInteraction, true);
+      window.removeEventListener("touchstart", unlockOnFirstInteraction, true);
       if (fadeFrameRef.current) cancelAnimationFrame(fadeFrameRef.current);
     };
   }, []);

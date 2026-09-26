@@ -15,18 +15,22 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
 
   useLayoutEffect(() => {
-    const previousRestoration = window.history.scrollRestoration;
     window.history.scrollRestoration = "manual";
 
     const resetScroll = () => window.scrollTo(0, 0);
     resetScroll();
-    const frame = window.requestAnimationFrame(resetScroll);
+    const firstFrame = window.requestAnimationFrame(resetScroll);
+    const secondFrame = window.requestAnimationFrame(() => window.requestAnimationFrame(resetScroll));
+    const lateReset = window.setTimeout(resetScroll, 250);
+    window.addEventListener("load", resetScroll, { once: true });
     window.addEventListener("pageshow", resetScroll);
 
     return () => {
-      window.cancelAnimationFrame(frame);
+      window.cancelAnimationFrame(firstFrame);
+      window.cancelAnimationFrame(secondFrame);
+      window.clearTimeout(lateReset);
+      window.removeEventListener("load", resetScroll);
       window.removeEventListener("pageshow", resetScroll);
-      window.history.scrollRestoration = previousRestoration;
     };
   }, []);
 
