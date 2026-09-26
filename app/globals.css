@@ -197,11 +197,6 @@ button {
   overflow: hidden;
   background:
     radial-gradient(
-      ellipse at 66% 82%,
-      rgba(255, 166, 35, 0.34),
-      transparent 15%
-    ),
-    radial-gradient(
       ellipse at 70% 42%,
       rgba(166, 85, 12, 0.24),
       transparent 35%
