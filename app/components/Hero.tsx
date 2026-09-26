@@ -8,13 +8,24 @@ export function Hero() {
   const [artistEffectsReady, setArtistEffectsReady] = useState(false);
   const [artistFlaresVisible, setArtistFlaresVisible] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
+  const artistPhotoRef = useRef<HTMLImageElement>(null);
   const effectsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const flareFrameRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const artistPhoto = new Image();
-    artistPhoto.src = "/atlas-wacera-card.jpg";
-    void artistPhoto.decode().catch(() => undefined);
+    const artistPhoto = artistPhotoRef.current;
+    if (!artistPhoto) return;
+
+    // Decode the exact image element used by the card while the hero is idle.
+    // This prevents its first visible frame from doing image work during a click.
+    const preparePhoto = () => {
+      void artistPhoto.decode().catch(() => undefined);
+    };
+
+    if (artistPhoto.complete) preparePhoto();
+    else artistPhoto.addEventListener("load", preparePhoto, { once: true });
+
+    return () => artistPhoto.removeEventListener("load", preparePhoto);
   }, []);
 
   useEffect(() => () => {
@@ -81,7 +92,7 @@ export function Hero() {
           <span className="hero-identity__aura" aria-hidden="true" />
           <span className="hero-mark-crop" aria-hidden="true"><img src="/vhm-monogram-gold.png?v=3" alt="" /></span>
           <span className="hero-artist-card">
-            <img src="/atlas-wacera-card.jpg" alt="Atlas Wacera standing in front of a brick archway" fetchPriority="high" decoding="async" />
+            <img ref={artistPhotoRef} src="/atlas-wacera-card.jpg" alt="Atlas Wacera standing in front of a brick archway" fetchPriority="high" loading="eager" decoding="sync" />
             <span className="hero-artist-card__shade" aria-hidden="true" />
             <span className="hero-artist-card__copy">
               <span className="eyebrow">Meet the artist</span>
