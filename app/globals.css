@@ -165,7 +165,8 @@ button {
 .nav-links__contact:hover,
 .nav-links__contact:focus-visible {
   color: var(--ink);
-  background: var(--cream);
+  background: var(--gold-bright);
+  border-color: var(--gold-bright);
 }
 
 .menu-button {
