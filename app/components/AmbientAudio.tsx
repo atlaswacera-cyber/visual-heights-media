@@ -57,14 +57,19 @@ export function AmbientAudio() {
     const audio = audioRef.current;
     if (!audio) return;
 
-    audio.currentTime = START_AT;
-    audio.volume = LISTENING_VOLUME;
-    audio.muted = true;
-    try {
-      await audio.play();
-    } catch {
-      // A later user interaction will use the normal audible start path.
-    }
+    const playFromStart = async () => {
+      audio.currentTime = START_AT;
+      audio.volume = LISTENING_VOLUME;
+      audio.muted = true;
+      try {
+        await audio.play();
+      } catch {
+        // A later user interaction will use the normal audible start path.
+      }
+    };
+
+    if (audio.readyState >= HTMLMediaElement.HAVE_METADATA) void playFromStart();
+    else audio.addEventListener("loadedmetadata", playFromStart, { once: true });
   };
 
   const stop = () => {
