@@ -56,7 +56,8 @@ body::after {
   background-position: center top;
   background-size: 1600px auto;
   opacity: 0;
-  filter: saturate(0.82) sepia(0.24) brightness(1.2);
+  /* Tuned toward the warm gold-bronze light used in the VHM mark. */
+  filter: sepia(1) saturate(1.38) hue-rotate(350deg) brightness(1.18);
   mix-blend-mode: screen;
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 42%, #000 58%, transparent 100%);
   mask-image: linear-gradient(90deg, transparent 0%, #000 42%, #000 58%, transparent 100%);
@@ -69,11 +70,11 @@ body::after {
 }
 
 html.inscriptions-revealing body::before {
-  animation: inscription-base-reveal 8.4s cubic-bezier(0.18, 0.72, 0.2, 1) both;
+  animation: inscription-base-reveal 13s cubic-bezier(0.18, 0.72, 0.2, 1) both;
 }
 
 html.inscriptions-revealing body::after {
-  animation: inscription-glint 8.4s cubic-bezier(0.18, 0.72, 0.2, 1) both;
+  animation: inscription-glint 13s cubic-bezier(0.18, 0.72, 0.2, 1) both;
 }
 
 @keyframes inscription-base-reveal {
