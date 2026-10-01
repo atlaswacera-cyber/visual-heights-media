@@ -21,7 +21,7 @@ export function AmbientAudio() {
     document.documentElement.classList.add("inscriptions-revealing");
     inscriptionRevealTimerRef.current = window.setTimeout(() => {
       document.documentElement.classList.remove("inscriptions-revealing");
-    }, 5400);
+    }, 8400);
   };
 
   const fadeTo = (target: number, duration: number, done?: () => void) => {

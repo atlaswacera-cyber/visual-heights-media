@@ -69,11 +69,11 @@ body::after {
 }
 
 html.inscriptions-revealing body::before {
-  animation: inscription-base-reveal 5.4s cubic-bezier(0.18, 0.72, 0.2, 1) both;
+  animation: inscription-base-reveal 8.4s cubic-bezier(0.18, 0.72, 0.2, 1) both;
 }
 
 html.inscriptions-revealing body::after {
-  animation: inscription-glint 5.4s cubic-bezier(0.18, 0.72, 0.2, 1) both;
+  animation: inscription-glint 8.4s cubic-bezier(0.18, 0.72, 0.2, 1) both;
 }
 
 @keyframes inscription-base-reveal {
