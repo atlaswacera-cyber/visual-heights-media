@@ -44,6 +44,50 @@ body::before {
   filter: saturate(0.6) sepia(0.16);
 }
 
+/* A single passing light ties the inscriptions to the first audible music cue. */
+body::after {
+  content: "";
+  position: fixed;
+  z-index: 46;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("/vhm-inscription-texture.png");
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: 1600px auto;
+  opacity: 0;
+  filter: saturate(0.82) sepia(0.24) brightness(1.2);
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 42%, #000 58%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 42%, #000 58%, transparent 100%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 62% 100%;
+  mask-size: 62% 100%;
+  -webkit-mask-position: -70% 0;
+  mask-position: -70% 0;
+}
+
+html.inscriptions-revealing body::before {
+  animation: inscription-base-reveal 5.4s cubic-bezier(0.18, 0.72, 0.2, 1) both;
+}
+
+html.inscriptions-revealing body::after {
+  animation: inscription-glint 5.4s cubic-bezier(0.18, 0.72, 0.2, 1) both;
+}
+
+@keyframes inscription-base-reveal {
+  0%, 100% { opacity: 0.045; }
+  42% { opacity: 0.07; }
+}
+
+@keyframes inscription-glint {
+  0% { opacity: 0; -webkit-mask-position: -70% 0; mask-position: -70% 0; }
+  15% { opacity: 0.1; }
+  72% { opacity: 0.075; }
+  100% { opacity: 0; -webkit-mask-position: 165% 0; mask-position: 165% 0; }
+}
+
 body,
 button,
 a {

@@ -9,9 +9,20 @@ const LOOP_LEAD_TIME = 3.2;
 export function AmbientAudio() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const fadeFrameRef = useRef<number | null>(null);
+  const inscriptionRevealTimerRef = useRef<number | null>(null);
   const restartingRef = useRef(false);
   const pausedForVideoRef = useRef(false);
+  const hasRevealedInscriptionsRef = useRef(false);
   const [enabled, setEnabled] = useState(false);
+
+  const revealInscriptions = () => {
+    if (hasRevealedInscriptionsRef.current) return;
+    hasRevealedInscriptionsRef.current = true;
+    document.documentElement.classList.add("inscriptions-revealing");
+    inscriptionRevealTimerRef.current = window.setTimeout(() => {
+      document.documentElement.classList.remove("inscriptions-revealing");
+    }, 5400);
+  };
 
   const fadeTo = (target: number, duration: number, done?: () => void) => {
     const audio = audioRef.current;
@@ -46,6 +57,7 @@ export function AmbientAudio() {
       await audio.play();
       fadeTo(LISTENING_VOLUME, 1200);
       setEnabled(true);
+      revealInscriptions();
       return true;
     } catch {
       setEnabled(false);
@@ -126,6 +138,8 @@ export function AmbientAudio() {
       window.removeEventListener("wheel", unlockOnFirstInteraction, true);
       window.removeEventListener("touchstart", unlockOnFirstInteraction, true);
       if (fadeFrameRef.current) cancelAnimationFrame(fadeFrameRef.current);
+      if (inscriptionRevealTimerRef.current) window.clearTimeout(inscriptionRevealTimerRef.current);
+      document.documentElement.classList.remove("inscriptions-revealing");
     };
   }, []);
 
