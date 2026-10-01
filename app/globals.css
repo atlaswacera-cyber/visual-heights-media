@@ -29,6 +29,21 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* A quiet, fictional relic-mark texture that lives behind the entire experience. */
+body::before {
+  content: "";
+  position: fixed;
+  z-index: 45;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("/vhm-inscription-texture.png");
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: 1600px auto;
+  opacity: 0.045;
+  filter: saturate(0.6) sepia(0.16);
+}
+
 body,
 button,
 a {
