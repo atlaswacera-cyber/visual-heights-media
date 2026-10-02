@@ -5,13 +5,19 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 type SubmissionState = "idle" | "sending" | "sent" | "error";
 
 export function Contact() {
-  const [open, setOpen] = useState(false);
+  const [modalState, setModalState] = useState<"closed" | "open" | "closing">("closed");
   const [submission, setSubmission] = useState<SubmissionState>("idle");
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const closeTimerRef = useRef<number | null>(null);
+  const open = modalState !== "closed";
 
   const close = () => {
-    setOpen(false);
-    setSubmission("idle");
+    if (modalState !== "open") return;
+    setModalState("closing");
+    closeTimerRef.current = window.setTimeout(() => {
+      setModalState("closed");
+      setSubmission("idle");
+    }, 520);
   };
 
   useEffect(() => {
@@ -27,6 +33,7 @@ export function Contact() {
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
+      if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
     };
   }, [open]);
 
@@ -53,12 +60,12 @@ export function Contact() {
     <div className="section__topline" data-reveal><p className="eyebrow">Your story, elevated</p><span className="section-number">04 / 04</span></div>
     <div className="contact__body" data-reveal>
       <h2>Let’s make something<br /><em>worth remembering.</em></h2>
-      <button className="contact__button" type="button" onClick={() => setOpen(true)} aria-haspopup="dialog">
+      <button className="contact__button" type="button" onClick={() => setModalState("open")} aria-haspopup="dialog">
         <span>Start a project</span><span aria-hidden="true">↗</span>
       </button>
     </div>
 
-    {open && <div className="inquiry-modal" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) close(); }}>
+    {open && <div className={`inquiry-modal${modalState === "closing" ? " inquiry-modal--closing" : ""}`} role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) close(); }}>
       <section className="inquiry-modal__panel" role="dialog" aria-modal="true" aria-labelledby="inquiry-title">
         <div className="inquiry-modal__glow" aria-hidden="true" />
         <button ref={closeButtonRef} className="inquiry-modal__close" type="button" onClick={close} aria-label="Close inquiry form">×</button>
