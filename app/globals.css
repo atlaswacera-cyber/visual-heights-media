@@ -41,7 +41,8 @@ body::before {
   background-position: center top;
   background-size: 1600px auto;
   opacity: 0.045;
-  filter: saturate(0.6) sepia(0.16);
+  /* The resting marks share the VHM logo's bronze-gold tone, kept very faded. */
+  filter: sepia(1) saturate(1.1) hue-rotate(350deg) brightness(0.82);
 }
 
 /* A single passing light ties the inscriptions to the first audible music cue. */
@@ -70,12 +71,12 @@ body::after {
   mask-position: -70% 0;
 }
 
-html.inscriptions-revealing body::before {
-  animation: inscription-base-reveal 13s cubic-bezier(0.18, 0.72, 0.2, 1) both;
+html.inscriptions-active body::before {
+  animation: inscription-base-reveal 7s cubic-bezier(0.18, 0.72, 0.2, 1) infinite;
 }
 
-html.inscriptions-revealing body::after {
-  animation: inscription-glint 13s cubic-bezier(0.18, 0.72, 0.2, 1) both;
+html.inscriptions-active body::after {
+  animation: inscription-glint 7s cubic-bezier(0.18, 0.72, 0.2, 1) infinite;
 }
 
 @keyframes inscription-base-reveal {
