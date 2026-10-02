@@ -1570,7 +1570,7 @@ button {
   z-index: 0;
   inset: 0;
   pointer-events: none;
-  background: url("/vhm-inscription-texture.png") center / 1160px auto repeat-y;
+  background: url("/vhm-inscription-texture.png") center / cover no-repeat;
   filter: sepia(1) saturate(1.2) hue-rotate(350deg) brightness(1.05);
   mix-blend-mode: screen;
   animation: inquiry-backdrop-symbols 6.5s ease-in-out infinite alternate;
