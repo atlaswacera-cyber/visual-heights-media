@@ -72,25 +72,25 @@ body::after {
 }
 
 html.inscriptions-active body::before {
-  animation: inscription-base-reveal 7s cubic-bezier(0.18, 0.72, 0.2, 1) infinite;
+  animation: inscription-base-reveal 20s cubic-bezier(0.18, 0.72, 0.2, 1) infinite;
 }
 
 html.inscriptions-active body::after {
-  animation: inscription-glint 7s cubic-bezier(0.18, 0.72, 0.2, 1) infinite;
+  animation: inscription-glint 20s cubic-bezier(0.18, 0.72, 0.2, 1) infinite;
 }
 
 @keyframes inscription-base-reveal {
-  0%, 100% { opacity: 0.045; }
-  18% { opacity: 0.078; }
-  72% { opacity: 0.052; }
+  0%, 65%, 100% { opacity: 0.045; }
+  12% { opacity: 0.078; }
+  47% { opacity: 0.052; }
 }
 
 @keyframes inscription-glint {
   0% { opacity: 0; -webkit-mask-position: -70% 0; mask-position: -70% 0; }
-  14% { opacity: 0.26; }
-  44% { opacity: 0.14; }
-  74% { opacity: 0.055; }
-  100% { opacity: 0; -webkit-mask-position: 165% 0; mask-position: 165% 0; }
+  9% { opacity: 0.26; }
+  29% { opacity: 0.14; }
+  48% { opacity: 0.055; }
+  65%, 100% { opacity: 0; -webkit-mask-position: 165% 0; mask-position: 165% 0; }
 }
 
 body,
