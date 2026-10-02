@@ -68,7 +68,7 @@ export function Contact() {
     {open && <div className={`inquiry-modal${modalState === "closing" ? " inquiry-modal--closing" : ""}`} role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) close(); }}>
       <section className="inquiry-modal__panel" role="dialog" aria-modal="true" aria-labelledby="inquiry-title">
         <div className="inquiry-modal__glow" aria-hidden="true" />
-        <button ref={closeButtonRef} className="inquiry-modal__close" type="button" onClick={close} aria-label="Close inquiry form">×</button>
+        <button ref={closeButtonRef} className="inquiry-modal__close" type="button" onClick={close} aria-label="Close inquiry form"><img src="/vhm-monogram-gold.png?v=3" alt="" /></button>
         {submission === "sent" ? <div className="inquiry-modal__success">
           <p className="eyebrow">Inquiry received</p>
           <h2 id="inquiry-title">Your next story<br /><em>starts here.</em></h2>
