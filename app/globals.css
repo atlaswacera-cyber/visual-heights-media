@@ -1781,8 +1781,8 @@ button {
   padding: 14px 20px;
   border: 1px solid var(--gold-bright);
   border-radius: 999px;
-  background-color: var(--cream);
-  color: var(--ink);
+  background-color: #050403;
+  color: var(--cream);
   font: inherit;
   font-size: 12px;
   font-weight: 700;
