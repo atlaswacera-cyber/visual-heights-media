@@ -1569,7 +1569,9 @@ button {
   z-index: 0;
   inset: 0;
   pointer-events: none;
-  background: url("/vhm-inscription-texture.png") center / cover no-repeat;
+  background:
+    radial-gradient(circle at center, rgba(242, 189, 85, 0.24) 0%, rgba(242, 189, 85, 0.09) 25%, transparent 62%),
+    url("/vhm-inscription-texture.png") center / cover no-repeat;
   filter: sepia(1) saturate(1.45) hue-rotate(350deg) brightness(1.24);
   mix-blend-mode: screen;
   animation: inquiry-backdrop-symbols 7s ease-in-out infinite;
@@ -1844,14 +1846,14 @@ button {
 @keyframes inquiry-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes inquiry-backdrop-out { from { opacity: 1; } to { opacity: 0; } }
 @keyframes inquiry-backdrop-symbols {
-  0%, 100% { opacity: 0.12; transform: scale(1); }
-  50% { opacity: 0.32; transform: scale(1.055); }
+  0%, 100% { opacity: 0.14; transform: scale(1); }
+  50% { opacity: 0.25; transform: scale(1.012); }
 }
 @keyframes inquiry-backdrop-flare {
-  0%, 100% { opacity: 0; transform: scale(0.78); }
-  24% { opacity: 0.36; }
-  52% { opacity: 0.5; transform: scale(1.14); }
-  76% { opacity: 0.1; transform: scale(1.24); }
+  0%, 100% { opacity: 0; transform: scale(0.92); }
+  28% { opacity: 0.18; }
+  52% { opacity: 0.34; transform: scale(1.06); }
+  76% { opacity: 0.06; transform: scale(1.1); }
 }
 @keyframes inquiry-panel-in {
   from { opacity: 0; transform: perspective(1200px) translateY(42px) scale(0.91); filter: blur(6px); }
