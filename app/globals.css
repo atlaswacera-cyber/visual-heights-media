@@ -1636,7 +1636,7 @@ button {
     radial-gradient(ellipse at 8% 0%, rgba(244, 176, 51, 0.24), transparent 38%),
     url("/vhm-inscription-texture.png") center / 780px auto repeat-y;
   mix-blend-mode: screen;
-  animation: inquiry-modal-symbols-in 3s ease-out both;
+  animation: inquiry-modal-symbols-in 6s ease-out both;
 }
 
 .inquiry-modal__glow::after {
