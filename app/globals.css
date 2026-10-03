@@ -1641,7 +1641,10 @@ button {
 .inquiry-modal__glow::after {
   content: "";
   position: absolute;
-  inset: -20%;
+  top: -26%;
+  left: 48%;
+  width: 26%;
+  height: 152%;
   pointer-events: none;
   opacity: 0.76;
   background:
