@@ -1570,9 +1570,28 @@ button {
   inset: 0;
   pointer-events: none;
   background: url("/vhm-inscription-texture.png") center / cover no-repeat;
-  filter: sepia(1) saturate(1.2) hue-rotate(350deg) brightness(1.05);
+  filter: sepia(1) saturate(1.45) hue-rotate(350deg) brightness(1.24);
   mix-blend-mode: screen;
   animation: inquiry-backdrop-symbols 6.5s ease-in-out infinite alternate;
+}
+
+.inquiry-modal::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background: url("/vhm-inscription-texture.png") center / cover no-repeat;
+  opacity: 0;
+  filter: sepia(1) saturate(1.7) hue-rotate(350deg) brightness(1.6);
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 25%, rgba(0, 0, 0, 0.35) 65%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 25%, rgba(0, 0, 0, 0.35) 65%, transparent 100%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 66% 100%;
+  mask-size: 66% 100%;
+  animation: inquiry-backdrop-flare 6.5s cubic-bezier(0.18, 0.72, 0.2, 1) infinite;
 }
 
 .inquiry-modal__panel {
@@ -1829,8 +1848,14 @@ button {
 @keyframes inquiry-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes inquiry-backdrop-out { from { opacity: 1; } to { opacity: 0; } }
 @keyframes inquiry-backdrop-symbols {
-  from { opacity: 0.055; transform: scale(1); }
-  to { opacity: 0.19; transform: scale(1.025); }
+  from { opacity: 0.12; transform: scale(1); }
+  to { opacity: 0.32; transform: scale(1.025); }
+}
+@keyframes inquiry-backdrop-flare {
+  0% { opacity: 0; -webkit-mask-position: -75% 0; mask-position: -75% 0; }
+  16% { opacity: 0.44; }
+  48% { opacity: 0.14; }
+  72%, 100% { opacity: 0; -webkit-mask-position: 165% 0; mask-position: 165% 0; }
 }
 @keyframes inquiry-panel-in {
   from { opacity: 0; transform: perspective(1200px) translateY(42px) scale(0.91); filter: blur(6px); }
