@@ -1643,11 +1643,11 @@ button {
   position: absolute;
   inset: -20%;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.76;
   background:
-    radial-gradient(ellipse 20% 14% at 62% 24%, rgba(255, 246, 211, 0.96), rgba(246, 183, 62, 0.34) 36%, transparent 74%),
-    linear-gradient(90deg, transparent, rgba(255, 229, 159, 0.82), rgba(230, 139, 24, 0.24), transparent);
-  filter: blur(7px);
+    radial-gradient(ellipse 20% 14% at 62% 24%, rgba(255, 249, 221, 1), rgba(249, 188, 66, 0.58) 36%, transparent 74%),
+    linear-gradient(90deg, transparent, rgba(255, 235, 177, 0.96), rgba(235, 146, 29, 0.38), transparent);
+  filter: blur(4px);
   mix-blend-mode: screen;
   transform: rotate(21deg);
   animation: inquiry-panel-photo-flare 10s ease-in-out infinite alternate;
