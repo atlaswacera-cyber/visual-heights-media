@@ -38,11 +38,14 @@ export function AmbientAudio() {
     fadeFrameRef.current = requestAnimationFrame(tick);
   };
 
-  const begin = async () => {
+  const begin = async (fromStart = true) => {
     const audio = audioRef.current;
     if (!audio) return false;
 
-    if (audio.currentTime < START_AT - 0.25 || audio.ended) audio.currentTime = START_AT;
+    if (audio.readyState < HTMLMediaElement.HAVE_METADATA) {
+      await new Promise<void>((resolve) => audio.addEventListener("loadedmetadata", () => resolve(), { once: true }));
+    }
+    if (fromStart) audio.currentTime = START_AT;
     audio.muted = false;
     audio.volume = 0;
     try {
@@ -152,7 +155,7 @@ export function AmbientAudio() {
       const resumeAfterVideo = () => {
         if (!pausedForVideoRef.current) return;
         pausedForVideoRef.current = false;
-        begin();
+        begin(false);
       };
       video.addEventListener("play", pauseForVideo);
       video.addEventListener("pause", resumeAfterVideo);
