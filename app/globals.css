@@ -1587,15 +1587,19 @@ button {
   padding: clamp(32px, 5vw, 72px);
   overflow: hidden;
   color: var(--cream);
-  border: 1px solid rgba(242, 189, 85, 0.42);
+  border: 1px solid rgba(242, 189, 85, 0.68);
   background:
     linear-gradient(115deg, rgba(81, 43, 12, 0.96), rgba(17, 10, 5, 0.985) 58%),
     var(--ink);
   box-shadow:
     0 30px 110px rgba(0, 0, 0, 0.62),
-    0 0 48px rgba(244, 157, 35, 0.17),
-    0 0 126px rgba(242, 189, 85, 0.1),
-    inset 0 0 0 10px rgba(242, 189, 85, 0.035);
+    0 0 0 7px rgba(242, 189, 85, 0.075),
+    0 0 0 15px rgba(242, 189, 85, 0.025),
+    0 0 28px rgba(255, 194, 74, 0.43),
+    0 0 96px rgba(242, 151, 35, 0.25),
+    0 0 176px rgba(242, 189, 85, 0.12),
+    inset 0 0 0 2px rgba(255, 226, 160, 0.16),
+    inset 0 0 0 10px rgba(242, 189, 85, 0.055);
   animation: inquiry-panel-in 620ms cubic-bezier(0.18, 0.8, 0.2, 1) both;
 }
 
@@ -1627,25 +1631,23 @@ button {
   z-index: 0;
   inset: 0;
   pointer-events: none;
-  opacity: 0.58;
+  opacity: 0.46;
   background:
     radial-gradient(ellipse at 8% 0%, rgba(244, 176, 51, 0.24), transparent 38%),
     url("/vhm-inscription-texture.png") center / 780px auto repeat-y;
   mix-blend-mode: screen;
-  -webkit-mask-image: radial-gradient(ellipse 76% 70% at center, transparent 20%, rgba(0, 0, 0, 0.18) 43%, #000 82%);
-  mask-image: radial-gradient(ellipse 76% 70% at center, transparent 20%, rgba(0, 0, 0, 0.18) 43%, #000 82%);
 }
 
 .inquiry-modal__glow::after {
   content: "";
   position: absolute;
-  inset: -28%;
+  inset: -20%;
   pointer-events: none;
-  opacity: 0.24;
+  opacity: 0.5;
   background:
-    radial-gradient(ellipse 18% 12% at 62% 24%, rgba(255, 242, 202, 0.8), rgba(246, 183, 62, 0.18) 38%, transparent 72%),
-    linear-gradient(90deg, transparent, rgba(255, 229, 159, 0.52), rgba(230, 139, 24, 0.12), transparent);
-  filter: blur(9px);
+    radial-gradient(ellipse 20% 14% at 62% 24%, rgba(255, 246, 211, 0.96), rgba(246, 183, 62, 0.34) 36%, transparent 74%),
+    linear-gradient(90deg, transparent, rgba(255, 229, 159, 0.82), rgba(230, 139, 24, 0.24), transparent);
+  filter: blur(7px);
   mix-blend-mode: screen;
   transform: rotate(21deg);
   animation: inquiry-panel-photo-flare 10s ease-in-out infinite alternate;
