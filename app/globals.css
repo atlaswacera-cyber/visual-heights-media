@@ -1572,7 +1572,9 @@ button {
   background: url("/vhm-inscription-texture.png") center / cover no-repeat;
   filter: sepia(1) saturate(1.45) hue-rotate(350deg) brightness(1.24);
   mix-blend-mode: screen;
-  animation: inquiry-backdrop-symbols 7s ease-in-out infinite;
+  animation:
+    inquiry-backdrop-symbols-in 6s ease-out both,
+    inquiry-backdrop-symbols 7s 6s ease-in-out infinite;
 }
 
 .inquiry-modal::after {
@@ -1876,6 +1878,18 @@ button {
     opacity: 0.3;
     transform: scale(1.014);
     filter: sepia(1) saturate(1.6) hue-rotate(350deg) brightness(1.48);
+  }
+}
+@keyframes inquiry-backdrop-symbols-in {
+  from {
+    opacity: 0;
+    transform: scale(1);
+    filter: sepia(1) saturate(1.25) hue-rotate(350deg) brightness(1.08);
+  }
+  to {
+    opacity: 0.11;
+    transform: scale(1);
+    filter: sepia(1) saturate(1.25) hue-rotate(350deg) brightness(1.08);
   }
 }
 @keyframes inquiry-modal-symbols-in {
