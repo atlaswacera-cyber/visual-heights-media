@@ -1541,7 +1541,7 @@ button {
 .contact__button:hover::after,
 .contact__button:focus-visible::after {
   opacity: 1;
-  animation: contact-button-flare 950ms cubic-bezier(0.2, 0.72, 0.24, 1) both;
+  animation: contact-button-flare 1.65s cubic-bezier(0.2, 0.72, 0.24, 1) both;
 }
 
 @keyframes contact-button-flare {
