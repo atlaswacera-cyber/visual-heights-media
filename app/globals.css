@@ -1494,6 +1494,9 @@ button {
 }
 
 .contact__button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   flex: 0 0 auto;
   width: clamp(150px, 16vw, 230px);
   aspect-ratio: 1;
@@ -1512,6 +1515,18 @@ button {
     transform 320ms ease;
 }
 
+.contact__button::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -25%;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(108deg, transparent 39%, rgba(255, 239, 188, 0.96) 50%, transparent 61%);
+  background-size: 230% 100%;
+  background-position: 145% 0;
+}
+
 .contact__button span:last-child {
   font-size: 26px;
 }
@@ -1521,6 +1536,17 @@ button {
   color: var(--ink);
   background: var(--gold-bright);
   transform: rotate(-4deg);
+}
+
+.contact__button:hover::after,
+.contact__button:focus-visible::after {
+  opacity: 1;
+  animation: contact-button-flare 950ms cubic-bezier(0.2, 0.72, 0.24, 1) both;
+}
+
+@keyframes contact-button-flare {
+  from { background-position: 145% 0; }
+  to { background-position: -75% 0; }
 }
 
 .inquiry-modal {
