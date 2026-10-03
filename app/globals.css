@@ -1765,7 +1765,9 @@ button {
 
 .inquiry-modal__send:hover:not(:disabled),
 .inquiry-modal__send:focus-visible:not(:disabled) {
-  background: var(--cream);
+  border-color: var(--gold-bright);
+  background: rgba(14, 8, 4, 0.92);
+  color: var(--gold-bright);
   transform: translateY(-2px);
 }
 
