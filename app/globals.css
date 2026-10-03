@@ -1631,11 +1631,12 @@ button {
   z-index: 0;
   inset: 0;
   pointer-events: none;
-  opacity: 0.46;
+  opacity: 0;
   background:
     radial-gradient(ellipse at 8% 0%, rgba(244, 176, 51, 0.24), transparent 38%),
     url("/vhm-inscription-texture.png") center / 780px auto repeat-y;
   mix-blend-mode: screen;
+  animation: inquiry-modal-symbols-in 3s ease-out both;
 }
 
 .inquiry-modal__glow::after {
@@ -1876,6 +1877,10 @@ button {
     transform: scale(1.014);
     filter: sepia(1) saturate(1.6) hue-rotate(350deg) brightness(1.48);
   }
+}
+@keyframes inquiry-modal-symbols-in {
+  from { opacity: 0; }
+  to { opacity: 0.46; }
 }
 @keyframes inquiry-panel-photo-flare {
   from { opacity: 0.1; transform: rotate(21deg) translateX(-7%); }
