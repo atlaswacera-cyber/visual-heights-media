@@ -11,6 +11,7 @@ export function AmbientAudio() {
   const fadeFrameRef = useRef<number | null>(null);
   const restartingRef = useRef(false);
   const pausedForVideoRef = useRef(false);
+  const hasAudibleStartRef = useRef(false);
   const [enabled, setEnabled] = useState(false);
 
   const activateInscriptions = () => document.documentElement.classList.add("inscriptions-active");
@@ -41,11 +42,15 @@ export function AmbientAudio() {
   const begin = async (fromStart = true) => {
     const audio = audioRef.current;
     if (!audio) return false;
+    if (fromStart && hasAudibleStartRef.current) return true;
 
     if (audio.readyState < HTMLMediaElement.HAVE_METADATA) {
       await new Promise<void>((resolve) => audio.addEventListener("loadedmetadata", () => resolve(), { once: true }));
     }
-    if (fromStart) audio.currentTime = START_AT;
+    if (fromStart) {
+      audio.currentTime = START_AT;
+      hasAudibleStartRef.current = true;
+    }
     audio.muted = false;
     audio.volume = 0;
     try {
@@ -55,6 +60,7 @@ export function AmbientAudio() {
       activateInscriptions();
       return true;
     } catch {
+      if (fromStart) hasAudibleStartRef.current = false;
       setEnabled(false);
       deactivateInscriptions();
       return false;
@@ -84,6 +90,7 @@ export function AmbientAudio() {
     const audio = audioRef.current;
     if (!audio) return;
     fadeTo(0, 450, () => audio.pause());
+    hasAudibleStartRef.current = false;
     setEnabled(false);
     deactivateInscriptions();
   };
