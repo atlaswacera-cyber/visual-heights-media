@@ -78,7 +78,6 @@ export function Hero() {
         <p className="eyebrow hero__eyebrow"><span>Independent media studio</span><span>Chicago · Everywhere</span></p>
         <h1 id="hero-title"><span>Stories with</span><em>altitude.</em></h1>
         <p className="hero__intro">Film, photography, and visual direction crafted with clarity, character, and a little vintage soul.</p>
-        <div className="hero__actions"><a className="button button--light" href="#work">Explore the work <span aria-hidden="true">↘</span></a><a className="text-link" href="#about">Meet the studio <span aria-hidden="true">→</span></a></div>
       </div>
 
       <div className={`hero__visual${artistOpen ? " hero__visual--artist" : ""}`}>

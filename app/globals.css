@@ -427,33 +427,6 @@ button {
   line-height: 1.55;
 }
 
-.hero__actions {
-  margin-top: 34px;
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-
-.button {
-  min-height: 50px;
-  padding: 0 23px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
-  transition:
-    transform 250ms ease,
-    background 250ms ease;
-}
-
-.button:hover,
-.button:focus-visible {
-  transform: translateY(-2px);
-}
-
 .button--light {
   color: var(--ink);
   background: var(--cream);
@@ -2279,12 +2252,6 @@ button {
 }
 
 @media (max-width: 480px) {
-  .hero__actions {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 17px;
-  }
-
   .manifesto__grid {
     padding-top: 80px;
   }
