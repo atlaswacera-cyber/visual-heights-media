@@ -24,7 +24,7 @@ export function Hero() {
   const [artistExiting, setArtistExiting] = useState(false);
   const [artistEffectsReady, setArtistEffectsReady] = useState(false);
   const [artistFlaresVisible, setArtistFlaresVisible] = useState(false);
-  const [artistFrame, setArtistFrame] = useState(1);
+  const [artistFrame, setArtistFrame] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
   const artistPhotoRefs = useRef<(HTMLImageElement | null)[]>([]);
   const effectsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -41,19 +41,6 @@ export function Hero() {
 
     return () => cleanups.forEach((cleanup) => cleanup());
   }, []);
-
-  useEffect(() => {
-    if (!artistOpen) {
-      setArtistFrame(1);
-      return;
-    }
-
-    const frameTimer = window.setInterval(() => {
-      setArtistFrame((currentFrame) => (currentFrame + 1) % artistFrames.length);
-    }, 7200);
-
-    return () => window.clearInterval(frameTimer);
-  }, [artistOpen]);
 
   useEffect(() => () => {
     if (effectsTimerRef.current) clearTimeout(effectsTimerRef.current);
@@ -77,6 +64,19 @@ export function Hero() {
   }, [artistEffectsReady]);
 
   const toggleArtist = () => {
+    if (!artistOpen) {
+      setArtistExiting(false);
+      setArtistFrame(0);
+      setArtistOpen(true);
+      effectsTimerRef.current = setTimeout(() => setArtistEffectsReady(true), 650);
+      return;
+    }
+
+    if (artistFrame === 0) {
+      setArtistFrame(1);
+      return;
+    }
+
     if (artistOpen) {
       if (effectsTimerRef.current) clearTimeout(effectsTimerRef.current);
       setArtistEffectsReady(false);
@@ -92,10 +92,6 @@ export function Hero() {
       window.setTimeout(() => setArtistExiting(false), 1100);
       return;
     }
-
-    setArtistExiting(false);
-    setArtistOpen(true);
-    effectsTimerRef.current = setTimeout(() => setArtistEffectsReady(true), 650);
   };
 
   return (
@@ -111,7 +107,7 @@ export function Hero() {
         <button
           className="hero-identity"
           type="button"
-          aria-label={artistOpen ? "Return to the Visual Heights logo" : "Meet the artist, Atlas Wacera"}
+          aria-label={artistOpen ? artistFrame === 0 ? "See Atlas Wacera behind the lens" : "Return to the Visual Heights logo" : "Meet the artist, Atlas Wacera"}
           aria-pressed={artistOpen}
           onClick={toggleArtist}
         >
@@ -138,7 +134,7 @@ export function Hero() {
             </span>
           </span>
         </button>
-        <span className="hero__visual-label">{artistOpen ? "Click to return / VHM" : "Click to meet Atlas / VHM"}</span>
+        <span className="hero__visual-label">{artistOpen ? artistFrame === 0 ? "Click to see Atlas at work / VHM" : "Click to return / VHM" : "Click to meet Atlas / VHM"}</span>
       </div>
       <a className="scroll-cue" href="#about" aria-label="Scroll to our approach"><span>Scroll</span><i aria-hidden="true" /></a>
     </section>

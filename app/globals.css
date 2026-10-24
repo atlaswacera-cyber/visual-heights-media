@@ -763,6 +763,7 @@ button {
   gap: 9px;
   color: var(--cream);
   text-align: left;
+  animation: artistCopyIn 650ms cubic-bezier(0.22, 0.7, 0.2, 1) both;
 }
 
 .hero-artist-card__copy .eyebrow {
@@ -791,6 +792,11 @@ button {
   font-style: normal;
   letter-spacing: 0.11em;
   text-transform: uppercase;
+}
+
+@keyframes artistCopyIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .hero__visual--artist .hero-mark-crop {
