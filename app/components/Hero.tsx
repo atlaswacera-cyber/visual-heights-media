@@ -17,6 +17,13 @@ const artistFrames = [
     description: "From first setup to final take, Atlas brings focus, texture, and intention to every frame.",
     className: "hero-artist-card__image--filming",
   },
+  {
+    src: "/atlas-collaboration-web.jpg",
+    eyebrow: "Built together",
+    title: "Collaboration, in frame.",
+    description: "Atlas works closely with artists, crews, and clients—making room for shared ideas while keeping the story moving forward.",
+    className: "hero-artist-card__image--collaboration",
+  },
 ];
 
 export function Hero() {
@@ -72,8 +79,8 @@ export function Hero() {
       return;
     }
 
-    if (artistFrame === 0) {
-      setArtistFrame(1);
+    if (artistFrame < artistFrames.length - 1) {
+      setArtistFrame((currentFrame) => currentFrame + 1);
       return;
     }
 
@@ -107,7 +114,7 @@ export function Hero() {
         <button
           className="hero-identity"
           type="button"
-          aria-label={artistOpen ? artistFrame === 0 ? "See Atlas Wacera behind the lens" : "Return to the Visual Heights logo" : "Meet the artist, Atlas Wacera"}
+          aria-label={artistOpen ? artistFrame === 0 ? "See Atlas Wacera behind the lens" : artistFrame === 1 ? "See Atlas Wacera collaborating on set" : "Return to the Visual Heights logo" : "Meet the artist, Atlas Wacera"}
           aria-pressed={artistOpen}
           onClick={toggleArtist}
         >
@@ -134,7 +141,7 @@ export function Hero() {
             </span>
           </span>
         </button>
-        <span className="hero__visual-label">{artistOpen ? artistFrame === 0 ? "Click to see Atlas at work / VHM" : "Click to return / VHM" : "Click to meet Atlas / VHM"}</span>
+        <span className="hero__visual-label">{artistOpen ? artistFrame === 0 ? "Click to see Atlas at work / VHM" : artistFrame === 1 ? "Click to see collaboration / VHM" : "Click to return / VHM" : "Click to meet Atlas / VHM"}</span>
       </div>
       <a className="scroll-cue" href="#about" aria-label="Scroll to our approach"><span>Scroll</span><i aria-hidden="true" /></a>
     </section>
