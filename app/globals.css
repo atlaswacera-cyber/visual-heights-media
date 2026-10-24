@@ -744,10 +744,11 @@ button {
 
 .hero-artist-card__image--collaboration {
   object-position: 50% center;
+  transform-origin: 50% 100%;
 }
 
 .hero-artist-card__image--collaboration.hero-artist-card__image--active {
-  transform: scale(1);
+  transform: scale(1.11);
 }
 
 .hero-artist-card__shade {
