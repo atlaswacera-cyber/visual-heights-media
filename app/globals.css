@@ -735,11 +735,11 @@ button {
 }
 
 .hero-artist-card__image--filming {
-  object-position: 28% center;
+  object-position: 34% 42%;
 }
 
 .hero-artist-card__image--filming.hero-artist-card__image--active {
-  transform: scale(1.02);
+  transform: scale(1);
 }
 
 .hero-artist-card__shade {
