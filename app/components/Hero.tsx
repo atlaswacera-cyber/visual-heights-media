@@ -21,7 +21,7 @@ const artistFrames = [
     src: "/atlas-collaboration-web.jpg",
     eyebrow: "Built together",
     title: "Collaboration, in frame.",
-    description: "Atlas works closely with artists, crews, and clients—making room for shared ideas while keeping the story moving forward.",
+    description: "With humility and focus, Atlas works alongside artists, crews, and clients—making room for shared ideas while keeping the story moving forward.",
     className: "hero-artist-card__image--collaboration",
   },
 ];
