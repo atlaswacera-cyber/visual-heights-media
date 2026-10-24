@@ -743,12 +743,18 @@ button {
 }
 
 .hero-artist-card__image--collaboration {
-  object-position: 50% center;
+  object-position: 44% center;
   transform-origin: 50% 100%;
 }
 
 .hero-artist-card__image--collaboration.hero-artist-card__image--active {
   transform: scale(1.18);
+}
+
+@media (hover: hover) {
+  .hero__visual--artist .hero-identity:hover .hero-artist-card__image--collaboration.hero-artist-card__image--active {
+    transform: scale(1.23);
+  }
 }
 
 .hero-artist-card__shade {
