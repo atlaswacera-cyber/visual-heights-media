@@ -24,7 +24,7 @@ export function Hero() {
   const [artistExiting, setArtistExiting] = useState(false);
   const [artistEffectsReady, setArtistEffectsReady] = useState(false);
   const [artistFlaresVisible, setArtistFlaresVisible] = useState(false);
-  const [artistFrame, setArtistFrame] = useState(0);
+  const [artistFrame, setArtistFrame] = useState(1);
   const heroRef = useRef<HTMLElement>(null);
   const artistPhotoRefs = useRef<(HTMLImageElement | null)[]>([]);
   const effectsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -44,7 +44,7 @@ export function Hero() {
 
   useEffect(() => {
     if (!artistOpen) {
-      setArtistFrame(0);
+      setArtistFrame(1);
       return;
     }
 

@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   description:
     "A Chicago media production studio creating film, photography, and visual direction with clarity, character, and vintage soul.",
   icons: {
-    icon: [{ url: "/favicon.ico?v=6", type: "image/x-icon", sizes: "any" }],
-    shortcut: "/favicon.ico?v=6",
-    apple: "/apple-touch-icon.png?v=6",
+    icon: [{ url: "/favicon.ico?v=7", type: "image/x-icon", sizes: "any" }],
+    shortcut: "/favicon.ico?v=7",
+    apple: "/apple-touch-icon.png?v=7",
   },
 };
 
@@ -20,10 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" type="image/x-icon" href="/favicon.ico?v=6" />
-        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=6" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=6" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico?v=7" />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=7" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=7" />
         <link rel="preload" as="image" href="/atlas-wacera-card.jpg" />
+        <link rel="preload" as="image" href="/atlas-filming-web.jpg" />
         <script
           dangerouslySetInnerHTML={{
             __html: `if ("scrollRestoration" in history) history.scrollRestoration = "manual"; window.scrollTo(0, 0);`,
