@@ -549,7 +549,7 @@ button {
     color: var(--gold-bright);
   }
 
-  .hero__visual--artist .hero-identity:hover .hero-artist-card > img {
+  .hero__visual--artist .hero-identity:hover .hero-artist-card__image--active {
     transform: scale(1.1);
   }
 }
@@ -711,18 +711,35 @@ button {
   opacity: 0.26;
 }
 
-.hero-artist-card > img {
-  position: relative;
+.hero-artist-card__image {
+  position: absolute;
   z-index: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
   object-position: center 42%;
-  transform: scale(1.06);
-  transition: transform 650ms cubic-bezier(0.22, 0.7, 0.2, 1);
-  will-change: transform;
+  opacity: 0;
+  transform: scale(1.025);
+  transition:
+    opacity 900ms ease,
+    transform 1500ms cubic-bezier(0.22, 0.7, 0.2, 1);
+  will-change: opacity, transform;
   backface-visibility: hidden;
+}
+
+.hero-artist-card__image--active {
+  opacity: 1;
+  transform: scale(1.06);
+}
+
+.hero-artist-card__image--filming {
+  object-position: 28% center;
+}
+
+.hero-artist-card__image--filming.hero-artist-card__image--active {
+  transform: scale(1.02);
 }
 
 .hero-artist-card__shade {

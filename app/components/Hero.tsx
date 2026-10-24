@@ -2,31 +2,58 @@
 
 import { useEffect, useRef, useState } from "react";
 
+const artistFrames = [
+  {
+    src: "/atlas-wacera-card.jpg",
+    eyebrow: "Meet the artist",
+    title: "Atlas Wacera",
+    description: "Jamaican-born filmmaker and creative director, creating stories with character, feeling, and a sense of place.",
+    className: "hero-artist-card__image--portrait",
+  },
+  {
+    src: "/atlas-filming-web.jpg",
+    eyebrow: "Behind the lens",
+    title: "Built in the moment.",
+    description: "From first setup to final take, Atlas brings focus, texture, and intention to every frame.",
+    className: "hero-artist-card__image--filming",
+  },
+];
+
 export function Hero() {
   const [artistOpen, setArtistOpen] = useState(false);
   const [artistExiting, setArtistExiting] = useState(false);
   const [artistEffectsReady, setArtistEffectsReady] = useState(false);
   const [artistFlaresVisible, setArtistFlaresVisible] = useState(false);
+  const [artistFrame, setArtistFrame] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
-  const artistPhotoRef = useRef<HTMLImageElement>(null);
+  const artistPhotoRefs = useRef<(HTMLImageElement | null)[]>([]);
   const effectsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const flareFrameRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const artistPhoto = artistPhotoRef.current;
-    if (!artistPhoto) return;
+    const cleanups = artistPhotoRefs.current.flatMap((artistPhoto) => {
+      if (!artistPhoto) return [];
+      const preparePhoto = () => { void artistPhoto.decode().catch(() => undefined); };
+      if (artistPhoto.complete) preparePhoto();
+      else artistPhoto.addEventListener("load", preparePhoto, { once: true });
+      return [() => artistPhoto.removeEventListener("load", preparePhoto)];
+    });
 
-    // Decode the exact image element used by the card while the hero is idle.
-    // This prevents its first visible frame from doing image work during a click.
-    const preparePhoto = () => {
-      void artistPhoto.decode().catch(() => undefined);
-    };
-
-    if (artistPhoto.complete) preparePhoto();
-    else artistPhoto.addEventListener("load", preparePhoto, { once: true });
-
-    return () => artistPhoto.removeEventListener("load", preparePhoto);
+    return () => cleanups.forEach((cleanup) => cleanup());
   }, []);
+
+  useEffect(() => {
+    if (!artistOpen) {
+      setArtistFrame(0);
+      return;
+    }
+
+    const frameTimer = window.setInterval(() => {
+      setArtistFrame((currentFrame) => (currentFrame + 1) % artistFrames.length);
+    }, 7200);
+
+    return () => window.clearInterval(frameTimer);
+  }, [artistOpen]);
 
   useEffect(() => () => {
     if (effectsTimerRef.current) clearTimeout(effectsTimerRef.current);
@@ -91,12 +118,22 @@ export function Hero() {
           <span className="hero-identity__aura" aria-hidden="true" />
           <span className="hero-mark-crop" aria-hidden="true"><img src="/vhm-monogram-gold.png?v=3" alt="" /></span>
           <span className="hero-artist-card">
-            <img ref={artistPhotoRef} src="/atlas-wacera-card.jpg" alt="Atlas Wacera standing in front of a brick archway" fetchPriority="high" loading="eager" decoding="sync" />
+            {artistFrames.map((frame, index) => <img
+              ref={(element) => { artistPhotoRefs.current[index] = element; }}
+              className={["hero-artist-card__image", frame.className, artistFrame === index ? "hero-artist-card__image--active" : ""].join(" ")}
+              src={frame.src}
+              alt=""
+              aria-hidden="true"
+              fetchPriority="high"
+              loading="eager"
+              decoding="sync"
+              key={frame.src}
+            />)}
             <span className="hero-artist-card__shade" aria-hidden="true" />
-            <span className="hero-artist-card__copy">
-              <span className="eyebrow">Meet the artist</span>
-              <strong>Atlas Wacera</strong>
-              <span>Jamaican-born filmmaker and creative director, creating stories with character, feeling, and a sense of place.</span>
+            <span className="hero-artist-card__copy" key={artistFrame}>
+              <span className="eyebrow">{artistFrames[artistFrame].eyebrow}</span>
+              <strong>{artistFrames[artistFrame].title}</strong>
+              <span>{artistFrames[artistFrame].description}</span>
               <em>Click to return to VHM ↗</em>
             </span>
           </span>
